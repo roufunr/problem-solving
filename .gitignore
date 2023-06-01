@@ -1,0 +1,8 @@
+/bin/
+/out/
+.classpath
+.project
+*.class
+/out/*
+.idea/*
+problem-solving-2022.iml
