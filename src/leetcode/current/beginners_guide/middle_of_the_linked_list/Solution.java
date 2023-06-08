@@ -1,6 +1,7 @@
 package leetcode.current.beginners_guide.middle_of_the_linked_list;
 
 public class Solution {
+    //https://leetcode.com/problems/middle-of-the-linked-list/
     private int linkedListLength(ListNode head) {
         int l = 0;
         ListNode temp = head;
