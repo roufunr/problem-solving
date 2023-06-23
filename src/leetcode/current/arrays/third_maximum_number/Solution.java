@@ -8,7 +8,7 @@ public class Solution {
         Arrays.sort(nums);
         int maxima = nums[nums.length - 1];
         int distinctCount = 1;
-        for(int i = nums.length - 2; i >= 0; i--) {
+        for(int i = nums.length - 2; i >= 0 && distinctCount < 3; i--) {
             if(nums[i] != maxima) {
                 distinctCount++;
                 maxima = nums[i];
