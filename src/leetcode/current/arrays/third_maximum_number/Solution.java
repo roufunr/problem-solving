@@ -1,10 +1,10 @@
 package leetcode.current.arrays.third_maximum_number;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Solution {
     // https://leetcode.com/explore/learn/card/fun-with-arrays/523/conclusion/3231/
-    public int thirdMaxV1(int[] nums) {
+    public int thirdMax(int[] nums) {
         Arrays.sort(nums);
         int maxima = nums[nums.length - 1];
         int distinctCount = 1;
@@ -17,22 +17,21 @@ public class Solution {
         return distinctCount < 3 ? nums[nums.length - 1] : maxima;
     }
 
-    public int thirdMax(int[] nums) {
-        int[] maxArr = {Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE};
-
-        for(int i = 0; i < nums.length; i++) {
-            boolean found = false;
-            for(int j = 0; j < maxArr.length; j++) {
-                if(maxArr[j] == nums[i]) {
-                    found = true;
-                    break;
-                }
-            }
-            if(found == true) continue;
-
-            maxArr[0] = nums[i];
-            Arrays.sort(maxArr);
+    public int thirdMaxV2(int[] nums) {
+        Set<Integer> numSet = new HashSet<>();
+        for(int n : nums) {
+            numSet.add(n);
         }
-        return maxArr[1] == Integer.MIN_VALUE ? maxArr[3] : maxArr[1];
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
+
+        for(Integer n : numSet) {
+            maxHeap.offer(n);
+        }
+        if(maxHeap.size() < 3) {
+            return maxHeap.poll();
+        }
+        maxHeap.poll();
+        maxHeap.poll();
+        return maxHeap.poll();
     }
 }
