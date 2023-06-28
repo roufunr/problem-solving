@@ -8,75 +8,85 @@ public class MyLinkedList {
         size = 0;
     }
     public int get(int index) {
-        Node node = head;
-        int itr = 0;
-        while(node != null && itr < index) {
-            node = node.next;
-            itr++;
-        }
-        if(node == null) {
+        if(index < 0 || index >= size) {
             return -1;
-        } else {
-            return node.val;
         }
+        Node itrNode = head;
+        int i = 0;
+        while(i < index) {
+            itrNode = itrNode.next;
+            i++;
+        }
+        return itrNode.val;
     }
     public void addAtHead(int val) {
         Node newNode = new Node(val);
-        if(head!=null) {
-            newNode.next = head.next;
-        }
+        newNode.next = head;
         head = newNode;
         size++;
     }
     public void addAtTail(int val) {
-        Node itrNode = head;
         Node newNode = new Node(val);
-        size++;
-        if(head == null) {
+        if(size == 0) {
             head = newNode;
+            size++;
             return;
         }
-        while(itrNode.next != null) {
-            itrNode = itrNode.next;
-        }
-        itrNode.next = newNode;
-    }
-    public void addAtIndex(int index, int val) {
-        if(index > size) {
-            return;
-        }
-        size++;
-        Node node = head;
         int i = 0;
-        while(i < index - 1) {
-            node = node.next;
+        Node itrNode = head;
+        while(i < size - 1) {
+            itrNode = itrNode.next;
             i++;
         }
+        itrNode.next = newNode;
+        size++;
+    }
+    public void addAtIndex(int index, int val) {
+        if(index < 0 || index > size) {
+            return;
+        }
         Node newNode = new Node(val);
-        newNode.next = node.next;
-        node.next = newNode;
+        if(index == 0) {
+            newNode.next = head;
+            head = newNode;
+            size++;
+            return;
+        }
+
+        Node itrNode = head;
+        for(int i = 0; i < index - 1; i++) {
+            itrNode = itrNode.next;
+        }
+        newNode.next = itrNode.next;
+        itrNode.next = newNode;
+        size++;
     }
     public void deleteAtIndex(int index) {
         if(index < 0 || index >= size) {
             return;
         }
-        Node node = head;
-        if(index == 0 && size >= 1) {
+        if (index == 0) {
             head = head.next;
             size--;
             return;
         }
-
-        int i = 0;
-        while(i < index - 1) {
-            node = node.next;
-            i++;
+        Node itrNode = head;
+        for(int i = 0; i < index - 1; i++) {
+            itrNode = itrNode.next;
         }
-        if(i < size - 1) {
-            node.next = node.next.next;
-        } else {
-            node.next = null;
-        }
+        itrNode.next = itrNode.next != null ? itrNode.next.next : null;
         size--;
+    }
+
+    public void printLinkedList() {
+        Node itrNode = head;
+        System.out.println("---- printing the list ----");
+        System.out.println("Size: " + size);
+        for(int i = 0; i < size; i++) {
+            System.out.print(itrNode.val);
+            itrNode = itrNode.next;
+            if(i !=  size - 1) System.out.print(" -> ");
+        }
+        System.out.println("\n-----------------------------");
     }
 }
