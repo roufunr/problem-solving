@@ -9,6 +9,7 @@ class ListNode {
     }
 }
 public class Solution {
+    // https://leetcode.com/explore/learn/card/linked-list/214/two-pointer-technique/1212/
     public boolean hasCycle(ListNode head) {
         ListNode fast = head;
         ListNode slow = head;
