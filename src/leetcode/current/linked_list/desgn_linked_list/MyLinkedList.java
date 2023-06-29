@@ -77,7 +77,6 @@ public class MyLinkedList {
         itrNode.next = itrNode.next != null ? itrNode.next.next : null;
         size--;
     }
-
     public void printLinkedList() {
         Node itrNode = head;
         System.out.println("---- printing the list ----");
