@@ -1,6 +1,7 @@
 package leetcode.current.linked_list.desgn_linked_list;
 
 public class MyLinkedList {
+    // https://leetcode.com/explore/learn/card/linked-list/209/singly-linked-list/1290/
     private Node head;
     private int size;
     public MyLinkedList() {
