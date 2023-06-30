@@ -5,11 +5,19 @@ public class Solution {
     public ListNode detectCycle(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;
+        ListNode actual = null;
         while(fast != null) {
             fast = fast.next != null ? fast.next.next : null;
             slow = slow.next;
             if (fast == slow) {
-                return fast;
+                actual = head;
+                while(true) {
+                    if(actual == head) {
+                        return actual;
+                    }
+                    actual = actual.next;
+                    slow = slow.next;
+                }
             }
         }
         return null;
