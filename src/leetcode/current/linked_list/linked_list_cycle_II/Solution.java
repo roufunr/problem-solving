@@ -9,10 +9,10 @@ public class Solution {
         while(fast != null) {
             fast = fast.next != null ? fast.next.next : null;
             slow = slow.next;
-            if (fast == slow) {
+            if (fast == slow && fast != null) {
                 actual = head;
                 while(true) {
-                    if(actual == head) {
+                    if(actual == slow) {
                         return actual;
                     }
                     actual = actual.next;
