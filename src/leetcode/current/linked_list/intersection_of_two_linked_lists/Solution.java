@@ -4,7 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Solution {
-    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    // https://leetcode.com/explore/learn/card/linked-list/214/two-pointer-technique/1215/
+    public ListNode getIntersectionNodeV1(ListNode headA, ListNode headB) {
         Set<ListNode> set = new HashSet<>();
         while(headA != null) {
             set.add(headA);
@@ -19,5 +20,29 @@ public class Solution {
             }
         }
         return null;
+    }
+
+
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode itrA = headA;
+        while(itrA != null) {
+            itrA.val *= (-1);
+            itrA = itrA.next;
+        }
+        ListNode intersection = null;
+        ListNode itrB = headB;
+        while(itrB != null) {
+            if(itrB.val < 0) {
+                intersection = itrB;
+                break;
+            }
+            itrB = itrB.next;
+        }
+        itrA = headA;
+        while(itrA != null) {
+            itrA.val *= (-1);
+            itrA = itrA.next;
+        }
+        return intersection;
     }
 }
