@@ -1,4 +1,4 @@
-package prev_code.toy.oct12_2022;
+package others.toy.oct12_2022;
 
 public class Runner {
     public static void main(String[] args) {

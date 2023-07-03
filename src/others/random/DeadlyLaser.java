@@ -1,4 +1,4 @@
-package prev_code.random;
+package others.random;
 //https://codeforces.com/contest/1721/problem/B
 
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package prev_code.toy;
+package others.toy;
 
 public class DBTablePrinter {
     private String[][] data;
