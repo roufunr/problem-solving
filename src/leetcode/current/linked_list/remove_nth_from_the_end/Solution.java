@@ -25,4 +25,25 @@ public class Solution {
         itr.next = itr.next != null ? itr.next.next : null;
         return head;
     }
+
+    public ListNode removeNthFromEndV2(ListNode head, int n) {
+        ListNode itr_first = head;
+        ListNode itr_second = head;
+        for(int i = 0; i < n; i++) {
+            if (itr_second != null) {
+                itr_second = itr_second.next;
+            }
+        }
+        if(itr_second == null) {
+            head = head == null ? null : head.next;
+            return head;
+        }
+
+        while(itr_second.next != null) {
+            itr_second = itr_second.next;
+            itr_first = itr_first.next;
+        }
+        itr_first.next = itr_first.next != null ? itr_first.next.next : null;
+        return head;
+    }
 }
