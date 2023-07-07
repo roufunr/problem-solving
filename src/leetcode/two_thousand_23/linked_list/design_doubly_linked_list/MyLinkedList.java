@@ -75,7 +75,6 @@ class MyLinkedList {
         }
         if(index == size) {
             addAtTail(val);
-            size++;
             return;
         }
         if(index < 0 || index > size) {
@@ -87,13 +86,15 @@ class MyLinkedList {
             itr = itr.next;
             i++;
         }
-        newNode.prev = itr;
-        newNode.next = itr != null ? itr.next : null;
-        itr.next = newNode;
-        if(newNode.next != null) {
-            newNode.next.prev = newNode;
+        if(itr != null) {
+            newNode.prev = itr;
+            newNode.next = itr != null ? itr.next : null;
+            itr.next = newNode;
+            if(newNode.next != null) {
+                newNode.next.prev = newNode;
+            }
+            size++;
         }
-        size++;
     }
 
     public void deleteAtIndex(int index) {
@@ -118,9 +119,11 @@ class MyLinkedList {
             itr = itr.next;
             i++;
         }
-        itr.next = itr.next.next;
-        itr.next.prev = itr;
-        size--;
+        if(itr!=null && itr.next != null) {
+            itr.next = itr.next.next;
+            if(itr.next!= null) itr.next.prev = itr;
+            size--;
+        }
     }
 
     public void printLinkedList() {
