@@ -67,11 +67,60 @@ class MyLinkedList {
     }
 
     public void addAtIndex(int index, int val) {
-
+        Node newNode = new Node(val);
+        if(index == 0) {
+            addAtHead(val);
+            size++;
+            return;
+        }
+        if(index == size) {
+            addAtTail(val);
+            size++;
+            return;
+        }
+        if(index < 0 || index > size) {
+            return;
+        }
+        Node itr = head;
+        int i = 1;
+        while(i < index) {
+            itr = itr.next;
+            i++;
+        }
+        newNode.prev = itr;
+        newNode.next = itr != null ? itr.next : null;
+        itr.next = newNode;
+        if(newNode.next != null) {
+            newNode.next.prev = newNode;
+        }
+        size++;
     }
 
     public void deleteAtIndex(int index) {
-
+        if(index < 0 || index >= size) {
+            return;
+        }
+        if(index == 0 && index < size) {
+            head = head.next;
+            if(head!=null) head.prev = null;
+            size--;
+            return;
+        }
+        if(index == size - 1) {
+            tail = tail.prev;
+            if(tail!=null) tail.next = null;
+            size--;
+            return;
+        }
+        Node itr = head;
+        int i = 1;
+        while(i < index) {
+            itr = itr.next;
+            i++;
+        }
+        itr.next = itr.next.next;
+        itr.next.prev = itr;
+        size--;
     }
 
     public void printLinkedList() {
