@@ -15,7 +15,7 @@ class Pair {
 }
 public class Solution {
     // https://leetcode.com/contest/weekly-contest-353/problems/maximum-number-of-jumps-to-reach-the-last-index/
-
+    // 6899. Maximum Number of Jumps to Reach the Last Index
     public int maximumJumps(int[] nums, int target) {
         Queue<Pair> nodes = new LinkedList<>();
         nodes.offer(new Pair(0, 0));
