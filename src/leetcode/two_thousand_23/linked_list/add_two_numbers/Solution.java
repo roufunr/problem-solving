@@ -1,9 +1,4 @@
 package leetcode.two_thousand_23.linked_list.add_two_numbers;
-
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
-
 public class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode itr1 = l1;
