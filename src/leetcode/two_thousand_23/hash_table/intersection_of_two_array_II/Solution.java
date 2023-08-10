@@ -16,10 +16,12 @@ public class Solution {
         for(int n : nums2) {
             if(map.containsKey(n)) {
                 int times = map.get(n);
-                times--;
                 intersectionList.add(n);
+                times = times - 1;
                 if(times == 0) {
                     map.remove(n);
+                } else {
+                    map.put(n, times);
                 }
             }
         }
