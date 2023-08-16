@@ -1,26 +1,27 @@
 package leetcode.two_thousand_23.hash_table.find_duplicate_subtrees;
 import java.util.*;
 public class Solution {
-    private void traverser(TreeNode node, Map<TreeNode, Integer> map) {
+    private String traverse(TreeNode node, Map<String, List<TreeNode>> map) {
         if(node == null) {
-            return;
+            return "";
         }
-        if(map.containsKey(node)) {
-            map.put(node, map.get(node) + 1);
+        String subTreeString = "L" + traverse(node.left, map) + node.val + "R" + traverse(node.right, map);
+        if(map.containsKey(subTreeString)) {
+            map.get(subTreeString).add(node);
         } else {
-            map.put(node, 1);
+            List<TreeNode> treeNodeList = new ArrayList<>();
+            treeNodeList.add(node);
+            map.put(subTreeString, treeNodeList);
         }
-
-        traverser(node.left, map);
-        traverser(node.right, map);
+        return subTreeString;
     }
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
-        Map<TreeNode, Integer> map = new HashMap<>();
-        traverser(root, map);
+        Map<String, List<TreeNode>> map = new HashMap<>();
+        traverse(root, map);
         List<TreeNode> ans = new ArrayList<>();
-        for(Map.Entry<TreeNode, Integer> entry : map.entrySet()) {
-            if(entry.getValue() > 1) {
-                ans.add(entry.getKey());
+        for(Map.Entry<String, List<TreeNode>> entry : map.entrySet()) {
+            if(entry.getValue().size() > 1) {
+                ans.add(entry.getValue().get(0));
             }
         }
         return ans;
