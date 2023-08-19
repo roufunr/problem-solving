@@ -2,6 +2,8 @@ package leetcode.two_thousand_23.hash_table.longest_subtsring_without_repetiton;
 import java.util.*;
 
 public class Solution {
+
+    //https://leetcode.com/explore/learn/card/hash-table/187/conclusion-hash-table/1135/
     public int lengthOfLongestSubstring(String s) {
         int left = 0;
         int right = 0;
