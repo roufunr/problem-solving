@@ -11,13 +11,13 @@ public class Solution {
         Set<Character> explored = new HashSet<>();
         while(right < s.length()) {
             int windowSize = right - left + 1;
-            maxSubstringLen = windowSize > maxSubstringLen ? windowSize : maxSubstringLen;
             if(explored.contains(s.charAt(right))) {
                 left = right;
                 explored = new HashSet<>();
-            } else {
-                explored.add(s.charAt(right));
             }
+            explored.add(s.charAt(right));
+
+            maxSubstringLen = windowSize > maxSubstringLen ? windowSize : maxSubstringLen;
             right++;
         }
         return maxSubstringLen;
