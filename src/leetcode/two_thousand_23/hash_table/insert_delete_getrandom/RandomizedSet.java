@@ -1,30 +1,44 @@
 package leetcode.two_thousand_23.hash_table.insert_delete_getrandom;
 import java.util.*;
 public class RandomizedSet {
-    private List<Integer> db;
-    private List<Integer> keys;
-    private static final long N = (long)Math.pow(2, 32);
+    private List<Integer> items;
+    private Map<Integer, Integer> map;
     public RandomizedSet() {
-        db = new ArrayList<>();
-        for(long i = 0; i < N; i++) {
-            db.add(0);
-        }
-        keys = new ArrayList<>();
+        items = new ArrayList<>();
+        map = new HashMap<>();
     }
 
     public boolean insert(int val) {
-        long hash = (val + (-1) * Integer.MIN_VALUE) % N;
-        if(db[hash] == 0) {
-            db[hash] =
+        if(map.containsKey(val)) {
+            return false;
+        } else {
+            map.put(val, items.size());
+            items.add(val);
+            return true;
         }
     }
 
     public boolean remove(int val) {
-        int hash = val % Integer.MAX_VALUE;
-        if ()
+        if(map.containsKey(val)) {
+            int index = map.get(val);
+            int last_idx = items.size() - 1;
+            if(index == last_idx) {
+                items.remove(val);
+            } else {
+                items.set(index, items.get(last_idx));
+                items.set(last_idx, val);
+                items.remove(val);
+                map.put(items.get(index), index);
+            }
+            map.remove(val);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public int getRandom() {
-
+        int randIdx = (int) Math.floor(Math.random() * (items.size()));
+        return items.get(randIdx);
     }
 }
