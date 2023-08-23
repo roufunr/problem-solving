@@ -23,11 +23,11 @@ public class RandomizedSet {
             int index = map.get(val);
             int last_idx = items.size() - 1;
             if(index == last_idx) {
-                items.remove(val);
+                items.remove(last_idx);
             } else {
                 items.set(index, items.get(last_idx));
                 items.set(last_idx, val);
-                items.remove(val);
+                items.remove(last_idx);
                 map.put(items.get(index), index);
             }
             map.remove(val);
