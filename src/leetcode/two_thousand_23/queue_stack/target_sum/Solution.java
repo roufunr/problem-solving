@@ -31,51 +31,42 @@ public class Solution {
     //     }
     //     return counter;
     // }
-
-    private int maxN = 20;
-    private int maxSum = 1000;
-    private int minSum = 0;
-    private int base = 0;
-    private int [][]dp;
-    private boolean [][]v;
     
-    // To store the states of DP
-    public Solution() {
-        dp = new int[maxN][maxSum + minSum];
-        v = new boolean[maxN][maxSum + minSum];
-    }
-    
- 
-    // Function to return the required count
-    private int findCnt(int []arr, int i, int required_sum, int n)
-    {
-        // Base case
-        if (i == n)
-        {
-            if (required_sum == 0)
+    private int total;
+    private int calculate(int[] nums, int sum, int i, int target, int[][] memorization) {
+        if(i == nums.length) {
+            if(sum == target) {
                 return 1;
-            else
+            } else {
                 return 0;
+            }
         }
-    
-        // If the state has been solved before
-        // return the value of the state
-        if (v[i][required_sum + base])
-            return dp[i][required_sum + base];
-    
-        // Setting the state as solved
-        v[i][required_sum + base] = true;
-    
-        // Recurrence relation
-        dp[i][required_sum + base] =
-            findCnt(arr, i + 1, required_sum, n) +
-            findCnt(arr, i + 1, required_sum - arr[i], n);
-        return dp[i][required_sum + base];
+
+        if(memorization[i][total + sum] != Integer.MIN_VALUE) {
+            return memorization[i][total + sum];
+        } else {
+            int add = calculate(nums, sum + nums[i], i + 1, target, memorization);
+            int subtract = calculate(nums, sum - nums[i], i + 1, target, memorization);
+            int totalSolution = add + subtract;
+            memorization[i][total + sum] = totalSolution;
+            return memorization[i][total + sum];
+        }
     }
 
-    
     public int findTargetSumWays(int[] nums, int target) {
-        return findCnt(nums, 0, target, nums.length);
-    }
+        total = 0;
+        for(int n : nums) {
+            total += n;
+        }
+        
+        int[][] memorization = new int[nums.length][2 * total + 1];
+        for(int i  = 0; i < memorization.length; i++) {
+            for(int j = 0; j < memorization[0].length; j++) {
+                memorization[i][j] = Integer.MIN_VALUE;
+            }
+        }
 
+        int ans = calculate(nums, 0, 0, target, memorization);
+        return ans;
+    }
 }
