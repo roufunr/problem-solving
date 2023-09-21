@@ -13,7 +13,7 @@ public class Solution {
         return true;
     }
     public String decodeString(String s) {
-        String ans = "3[a2[c]]"; 
+        String ans = ""; 
         // 3 a 2 c
         // 3 a cc
         // 3 acc
@@ -59,8 +59,10 @@ public class Solution {
                 i = j;
             }
         }
-
-        ans = stack.pop();
+        while(!stack.isEmpty()) {
+            ans = stack.pop() + ans;
+        }
+        
         return ans;
     }
 }
