@@ -14,11 +14,6 @@ public class Solution {
     }
     public String decodeString(String s) {
         String ans = ""; 
-        // 3 a 2 c
-        // 3 a cc
-        // 3 acc
-        // accaccacc
-
         Stack<String> stack = new Stack<>();
         
         for(int i = 0; i < s.length();) {
@@ -26,12 +21,12 @@ public class Solution {
                 i++;
                 continue;
             } else if(s.charAt(i) == ']') {
-                String str = stack.pop();
-                String str2  = stack.pop();
-                Integer number = isNumeric(str2) ? Integer.parseInt(str2) : Integer.parseInt(stack.pop());
-                String str3 = isNumeric(str2) ? "" : str2;
-
-                str = str3 + str;
+                String str = "";
+                while(!stack.isEmpty() && !isNumeric(stack.peek())) {
+                    str = stack.pop() + str;
+                }
+                String str2  = stack.isEmpty() ? "" :  stack.pop();
+                Integer number = Integer.parseInt(str2);
 
                 String target = "";
                 for(int j = 0; j < number; j++) {
@@ -42,7 +37,7 @@ public class Solution {
             } else if(s.charAt(i) >= 'a' && s.charAt(i) <= 'z') {
                 String str = "" + s.charAt(i);
                 int j = i + 1;
-                while(s.charAt(j) >= 'a' && s.charAt(j) <= 'z') {
+                while(j < s.length() && s.charAt(j) >= 'a' && s.charAt(j) <= 'z') {
                     str += s.charAt(j);
                     j++;
                 }
@@ -51,7 +46,7 @@ public class Solution {
             } else {
                 String numberStr = "" + s.charAt(i);
                 int j = i + 1;
-                while(s.charAt(j) >= '0' && s.charAt(j) <= '9') {
+                while(j < s.length() && s.charAt(j) >= '0' && s.charAt(j) <= '9') {
                     numberStr += s.charAt(j);
                     j++;
                 }
