@@ -12,12 +12,18 @@ class Pair {
     }
 }
 public class Solution {
-    private void calculateDist(int x, int y, int[][] mat, int[][] dist) {
+    private void calculateDist(int[][] mat, int[][] dist) {
         boolean[][] visited = new boolean[mat.length][mat[0].length];
         Queue<Pair> queue = new LinkedList<>();
-        dist[x][y] = 0;
-        visited[x][y] = true;
-        queue.offer(new Pair(x, y));
+        for(int i = 0; i < mat.length; i++) {
+            for(int j = 0; j < mat[0].length; j++) {
+                if(mat[i][j] == 0) {
+                    dist[i][j] = 0;
+                    visited[i][j] = true;
+                    queue.offer(new Pair(i, j));
+                }
+            }
+        }
         while(!queue.isEmpty()) {
             Pair front = queue.poll();
             if (front.x - 1 >= 0 && visited[front.x -1][front.y] == false) {
@@ -25,6 +31,10 @@ public class Solution {
                     visited[front.x - 1][front.y] = true;
                     dist[front.x -1][front.y] = dist[front.x][front.y] + 1 < dist[front.x -1][front.y] ?
                             dist[front.x][front.y] + 1 : dist[front.x -1][front.y];
+                    queue.offer(new Pair(front.x - 1, front.y));
+                } else {
+                    visited[front.x - 1][front.y] = true;
+                    dist[front.x - 1][front.y] = 0;
                     queue.offer(new Pair(front.x - 1, front.y));
                 }
             }
@@ -34,6 +44,10 @@ public class Solution {
                     dist[front.x + 1][front.y] = dist[front.x][front.y] + 1 < dist[front.x + 1][front.y] ?
                             dist[front.x][front.y] + 1 : dist[front.x + 1][front.y];
                     queue.offer(new Pair(front.x + 1, front.y));
+                } else {
+                    visited[front.x + 1][front.y] = true;
+                    dist[front.x + 1][front.y] = 0;
+                    queue.offer(new Pair(front.x + 1, front.y));
                 }
             }
             if (front.y - 1 >= 0 && visited[front.x][front.y - 1] == false) {
@@ -42,6 +56,10 @@ public class Solution {
                     dist[front.x][front.y - 1] = dist[front.x][front.y] + 1 < dist[front.x][front.y - 1] ?
                             dist[front.x][front.y] + 1 : dist[front.x][front.y - 1];
                     queue.offer(new Pair(front.x, front.y - 1));
+                } else {
+                    visited[front.x][front.y - 1] = true;
+                    dist[front.x][front.y - 1] = 0;
+                    queue.offer(new Pair(front.x, front.y - 1));
                 }
             }
             if (front.y + 1 < mat[0].length && visited[front.x][front.y + 1] == false) {
@@ -49,6 +67,10 @@ public class Solution {
                     visited[front.x][front.y + 1] = true;
                     dist[front.x][front.y + 1] = dist[front.x][front.y] + 1 < dist[front.x][front.y + 1] ?
                             dist[front.x][front.y] + 1 : dist[front.x][front.y + 1];
+                    queue.offer(new Pair(front.x, front.y + 1));
+                } else {
+                    visited[front.x][front.y + 1] = true;
+                    dist[front.x][front.y + 1] = 0;
                     queue.offer(new Pair(front.x, front.y + 1));
                 }
             }
@@ -62,13 +84,10 @@ public class Solution {
             }
         }
 
-        for(int i  = 0; i < dist.length; i++) {
-            for(int j = 0; j < dist[0].length; j++) {
-                if(mat[i][j] == 0) {
-                    calculateDist(i, j, mat, dist);
-                }
-            }
-        }
+
+        calculateDist(mat, dist);
+
+
         return dist;
     }
 }
