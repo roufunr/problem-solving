@@ -12,68 +12,63 @@ class Pair {
     }
 }
 public class Solution {
-    private int calculateDist(int x, int y, int[][] mat) {
-        if(mat[x][y] == 0) {
-            return 0;
-        }
-        int[][] distance = new int[mat.length][mat[0].length];
+    private void calculateDist(int x, int y, int[][] mat, int[][] dist) {
         boolean[][] visited = new boolean[mat.length][mat[0].length];
         Queue<Pair> queue = new LinkedList<>();
-        distance[x][y] = 0;
+        dist[x][y] = 0;
         visited[x][y] = true;
         queue.offer(new Pair(x, y));
         while(!queue.isEmpty()) {
             Pair front = queue.poll();
-            if (front.x - 1 >= 0
-                    && visited[front.x -1][front.y] == false) {
-                if(mat[front.x - 1][front.y] == 0) {
-                    return distance[front.x][front.y] + 1;
-                } else {
-                    visited[front.x -1][front.y] = true;
-                    distance[front.x -1][front.y] = distance[front.x][front.y] + 1;
+            if (front.x - 1 >= 0 && visited[front.x -1][front.y] == false) {
+                if(mat[front.x - 1][front.y] != 0) {
+                    visited[front.x - 1][front.y] = true;
+                    dist[front.x -1][front.y] = dist[front.x][front.y] + 1 < dist[front.x -1][front.y] ?
+                            dist[front.x][front.y] + 1 : dist[front.x -1][front.y];
                     queue.offer(new Pair(front.x - 1, front.y));
                 }
             }
-            if (front.x + 1 < mat.length
-                    && visited[front.x + 1][front.y] == false) {
-                if(mat[front.x + 1][front.y] == 0) {
-                    return distance[front.x][front.y] + 1;
-                } else {
+            if (front.x + 1 < mat.length && visited[front.x + 1][front.y] == false) {
+                if(mat[front.x + 1][front.y] != 0) {
                     visited[front.x + 1][front.y] = true;
-                    distance[front.x + 1][front.y] = distance[front.x][front.y] + 1;
+                    dist[front.x + 1][front.y] = dist[front.x][front.y] + 1 < dist[front.x + 1][front.y] ?
+                            dist[front.x][front.y] + 1 : dist[front.x + 1][front.y];
                     queue.offer(new Pair(front.x + 1, front.y));
                 }
             }
-            if (front.y - 1 >= 0
-                    && visited[front.x][front.y - 1] == false) {
-                if(mat[front.x][front.y - 1] == 0) {
-                    return distance[front.x][front.y] + 1;
-                } else {
+            if (front.y - 1 >= 0 && visited[front.x][front.y - 1] == false) {
+                if(mat[front.x][front.y - 1] != 0) {
                     visited[front.x][front.y - 1] = true;
-                    distance[front.x][front.y - 1] = distance[front.x][front.y] + 1;
+                    dist[front.x][front.y - 1] = dist[front.x][front.y] + 1 < dist[front.x][front.y - 1] ?
+                            dist[front.x][front.y] + 1 : dist[front.x][front.y - 1];
                     queue.offer(new Pair(front.x, front.y - 1));
                 }
             }
-            if (front.y + 1 < mat[0].length
-                    && visited[front.x][front.y + 1] == false) {
-                if(mat[front.x][front.y + 1] == 0) {
-                    return distance[front.x][front.y] + 1;
-                } else {
+            if (front.y + 1 < mat[0].length && visited[front.x][front.y + 1] == false) {
+                if(mat[front.x][front.y + 1] != 0) {
                     visited[front.x][front.y + 1] = true;
-                    distance[front.x][front.y + 1] = distance[front.x][front.y] + 1;
+                    dist[front.x][front.y + 1] = dist[front.x][front.y] + 1 < dist[front.x][front.y + 1] ?
+                            dist[front.x][front.y] + 1 : dist[front.x][front.y + 1];
                     queue.offer(new Pair(front.x, front.y + 1));
                 }
             }
         }
-        return 0;
     }
     public int[][] updateMatrix(int[][] mat) {
-        int[][] ans = new int[mat.length][mat[0].length];
-        for(int i = 0; i < mat.length; i++) {
-            for(int j = 0; j < mat[0].length; j++) {
-                ans[i][j] = calculateDist(i, j, mat);
+        int[][] dist = new int[mat.length][mat[0].length];
+        for(int i  = 0; i < dist.length; i++) {
+            for(int j = 0; j < dist[0].length; j++) {
+                dist[i][j] = Integer.MAX_VALUE;
             }
         }
-        return ans;
+
+        for(int i  = 0; i < dist.length; i++) {
+            for(int j = 0; j < dist[0].length; j++) {
+                if(mat[i][j] == 0) {
+                    calculateDist(i, j, mat, dist);
+                }
+            }
+        }
+        return dist;
     }
 }
