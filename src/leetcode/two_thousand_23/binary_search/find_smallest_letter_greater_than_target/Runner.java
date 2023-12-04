@@ -2,9 +2,9 @@ package leetcode.two_thousand_23.binary_search.find_smallest_letter_greater_than
 
 public class Runner {
     public static void main(String[] args) {
-        char[] letters = { 'c', 'f', 'j' };
+        char[] letters = { 'e','e','e','e','e','e','n','n','n','n'};
 
-        char target = 'c';
+        char target = 'e';
         new Solution().nextGreatestLetter(letters, target);
 
     }

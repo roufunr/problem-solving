@@ -4,10 +4,15 @@ public class Solution {
     public char nextGreatestLetter(char[] letters, char target) {
         int left = 0;
         int right = letters.length - 1;
+
         while (left + 1 < right) {
             int mid = left + (right - left) / 2;
-            if (letters[mid] <= target && letters[mid + 1] > target) {
-                return letters[mid + 1];
+            if (letters[mid] == target) {
+                if(letters[mid + 1] < target) {
+                    return letters[mid + 1];
+                } else {
+                    left = mid;
+                }
             } else if (letters[mid] < target) {
                 left = mid;
             } else {
