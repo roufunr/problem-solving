@@ -40,6 +40,12 @@ public class Solution {
         }
     }
 
+    public List<Integer> preorderTraversal_v0(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+        walk_v0(root, ans);
+        return ans;
+    }
+
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> ans = new ArrayList<>();
         walk_v1(root, ans);
