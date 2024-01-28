@@ -1,9 +1,7 @@
 package leetcode.two_thousand_24.binary_tree.inorder;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.Stack;
 
 import leetcode.two_thousand_24.binary_tree.tree.*;
@@ -41,4 +39,5 @@ public class Solution {
         walk_v1(root, ans);
         return ans;
     }
+
 }
