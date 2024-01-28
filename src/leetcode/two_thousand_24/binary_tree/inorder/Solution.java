@@ -23,26 +23,22 @@ public class Solution {
             return;
         }
         Stack<TreeNode> stack = new Stack<>();
-        Set<TreeNode> visited = new HashSet<>();
         stack.push(root);
-        visited.add(root);
-        while (!stack.isEmpty()) {
-            TreeNode topNode = stack.pop();
-            list.add(topNode.val);
-            if (topNode.right != null) { // so that left item is popped first
-                stack.push(topNode.right);
-                visited.add(topNode.right);
+        TreeNode current = root.left;
+        while (!stack.isEmpty() || current != null) {
+            while (current != null) {
+                stack.push(current);
+                current = current.left;
             }
-            if (topNode.left != null) {
-                stack.push(topNode.left);
-                visited.add(topNode.left);
-            }
+            TreeNode top = stack.pop();
+            list.add(top.val);
+            current = top.right;
         }
     }
 
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> ans = new ArrayList<>();
-        walk(root, ans);
+        walk_v1(root, ans);
         return ans;
     }
 }
