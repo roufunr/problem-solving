@@ -3,27 +3,16 @@ package leetcode.two_thousand_24.binary_tree.symmetric;
 import leetcode.two_thousand_24.binary_tree.tree.TreeNode;
 
 public class Solution {
-    String treeInString(TreeNode node) {
-        if (node == null) {
-            return "";
+    private boolean isMirror(TreeNode node1, TreeNode node2) {
+        if(node1 == null && node2 == null) {
+            return true;
         }
-        return node.val + "|" + treeInString(node.left) + "|" + treeInString(node.right);
-    }
-
-    String getReverse(String input) {
-        byte[] strAsByteArray = input.getBytes();
-        byte[] result = new byte[strAsByteArray.length];
-        for (int i = 0; i < strAsByteArray.length; i++)
-            result[i] = strAsByteArray[strAsByteArray.length - i - 1];
-        return new String(result);
-    }
-
-    public boolean isSymmetric(TreeNode root) {
-        if (root != null) {
-            String lefString = treeInString(root.left);
-            String rightString = treeInString(root.right);
-            return lefString.equals(getReverse(rightString));
+        if (node1 != null && node2 != null && node1.val == node2.val) {
+            return isMirror(node1.left, node2.right) && isMirror(node1.right, node2.left);
         }
         return false;
+    }
+    public boolean isSymmetric(TreeNode root) {
+        return isMirror(root, root);
     }
 }

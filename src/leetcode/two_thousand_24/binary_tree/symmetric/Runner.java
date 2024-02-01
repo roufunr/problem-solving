@@ -12,7 +12,7 @@ public class Runner {
         TreeNode two_ = new TreeNode(2, four_, three_);
         TreeNode one = new TreeNode(1, two, two_);
 
-        new Solution().isSymmetric(one);
+        System.out.println( new Solution().isSymmetric(one));
 
     }
 }

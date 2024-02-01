@@ -11,6 +11,6 @@ public class Runner {
         TreeNode nine = new TreeNode(9);
         TreeNode three = new TreeNode(3, nine, twenty);
 
-        new Solution().levelOrder(three);
+        System.out.println(new Solution().levelOrder(three));
     }
 }
