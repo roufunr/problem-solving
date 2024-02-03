@@ -1,7 +1,4 @@
 package leetcode.two_thousand_24.binary_tree.pathsum;
-
-import java.util.List;
-
 import leetcode.two_thousand_24.binary_tree.tree.TreeNode;
 
 public class Solution {
