@@ -8,6 +8,6 @@ public class Runner {
         TreeNode three = new TreeNode(3, null, null);
         TreeNode two = new TreeNode(2, three, null);
         TreeNode one = new TreeNode(1, null, two);
-        new Solution().postorderTraversal(one);
+        System.err.println(new Solution().postorderTraversal(one));
     }
 }
