@@ -34,36 +34,46 @@ public class Solution {
         }
         Node currentNode = root;
         Node firstNode = currentNode.left != null ? currentNode.left : currentNode.right;
-
         while (firstNode != null) {
             Node itrNode = firstNode;
-            while (itrNode != null && currentNode != null) {
-                if (currentNode.left == itrNode) {
-                    if (currentNode.right != null) {
-                        itrNode.next = currentNode.right;
-                        itrNode = itrNode.next;
-                    } else {
-                        currentNode = currentNode.next;
-                    }
-                } else {
+            while (currentNode != null) {
+                if(currentNode.left == null && currentNode.right == null) {
                     currentNode = currentNode.next;
-                    if (currentNode == null) {
-                        break;
-                    }
-                    if (currentNode.left != itrNode) {
-                        itrNode.next = currentNode.left;
-                        itrNode = itrNode.next;
+                } else {
+                    if(currentNode.left != null) {
+                        if(currentNode.left == itrNode) {
+                            if(currentNode.right != null) {
+                                itrNode.next = currentNode.right;
+                                itrNode= itrNode.next;
+                            }
+                            currentNode = currentNode.next;
+                        } else {
+                            itrNode.next = currentNode.left;
+                            itrNode = itrNode.next;
+                        }
+                    } else { // right not null
+                        if(currentNode.right != itrNode) {
+                            itrNode.next = currentNode.right;
+                            itrNode =  itrNode.next;
+                        }
+                        currentNode = currentNode.next;
                     }
                 }
             }
             currentNode = firstNode;
             Node itrCur = currentNode;
-            Node itrCurChild = currentNode.left;
-            while (itrCurChild == null) {
-                if (itrCur.left == itrCurChild) {
-                    itrCurChild = itrCur.right;
-                } else {
+            Node itrCurChild = null;
+            while (itrCur != null) {
+                if(itrCur.left == null && itrCur.right == null) {
                     itrCur = itrCur.next;
+                } else {
+                    if(itrCur.left != null) {
+                        itrCurChild = itrCur.left;
+                        break;
+                    } else {
+                        itrCurChild = itrCur.right;
+                        break;
+                    }
                 }
             }
             if (itrCur == null) {
