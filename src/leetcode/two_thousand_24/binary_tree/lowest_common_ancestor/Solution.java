@@ -9,10 +9,10 @@ public class Solution {
     public List<TreeNode> path(TreeNode root, TreeNode node) {
         List<TreeNode> p = new ArrayList<>();
         TreeNode itrNode = root;
-        while(itrNode != null) {
+        while (itrNode != null) {
             TreeNode savedNode = itrNode;
             p.add(savedNode);
-            if(itrNode.val == node.val) {
+            if (itrNode.val == node.val) {
                 break;
             } else if (itrNode.val > node.val) {
                 itrNode = itrNode.right;
@@ -22,14 +22,22 @@ public class Solution {
         }
         return p;
     }
+
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         List<TreeNode> p1 = path(root, p);
         List<TreeNode> p2 = path(root, q);
-        for(int i = 0; i < p1.size(); i++) {
-            if(p1.get(i) == p2.get(i)) {
-                return p1.get(i);
+        List<TreeNode> smallList = p1.size() < p2.size() ? p1 : p2;
+        List<TreeNode> largeList = p1.size() > p2.size() ? p1 : p2;
+        for (int i = 0; i < smallList.size(); i++) {
+            if (smallList.get(i) != largeList.get(i)) {
+                return smallList.get(i - 1);
             }
         }
-        return null;
+
+        if (smallList.size() == 1) {
+            return smallList.get(0);
+        } else {
+            return smallList.get(smallList.size() - 1);
+        }
     }
 }
