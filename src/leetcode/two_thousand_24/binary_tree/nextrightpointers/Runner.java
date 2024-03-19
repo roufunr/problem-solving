@@ -10,11 +10,11 @@ public class Runner {
         Node node3 = new Node(3);
         Node node1 = new Node(1);
 
-        // node2.left = node4;
-        // node2.right = node5;
+        node2.left = node4;
+        node2.right = node5;
 
-        // node3.left = node6;
-        // node3.right = node7;
+        node3.left = node6;
+        node3.right = node7;
 
         node1.left = node2;
         node1.right = node3;

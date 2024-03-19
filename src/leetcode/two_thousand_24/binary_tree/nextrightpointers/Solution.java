@@ -20,6 +20,30 @@ class pair {
 
 public class Solution {
     public Node connect(Node root) {
+        if(root == null) {
+            return null;
+        }
+
+        Node cur = root;
+        Node firstNode = root.left;
+        while(firstNode != null) {
+            Node nexNode = firstNode;
+            while(nexNode != null && cur != null) {
+                if(cur.left == nexNode) {
+                    nexNode.next = cur.right;
+                    cur = cur.next;
+                } else {
+                    nexNode.next = cur.left;
+                }
+                nexNode = nexNode.next;
+            }
+            cur = firstNode;
+            firstNode = firstNode.left;
+        }
+        return root;
+    }
+
+    public Node connectv0(Node root) {
         if (root == null) {
             return null;
         }
@@ -72,4 +96,8 @@ public class Solution {
 
         return root;
     }
+
+    
+
+
 }
