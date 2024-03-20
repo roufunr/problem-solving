@@ -28,16 +28,12 @@ public class Solution {
         List<TreeNode> p2 = path(root, q);
         List<TreeNode> smallList = p1.size() < p2.size() ? p1 : p2;
         List<TreeNode> largeList = p1.size() > p2.size() ? p1 : p2;
-        for (int i = 0; i < smallList.size(); i++) {
-            if (smallList.get(i) != largeList.get(i)) {
-                return smallList.get(i - 1);
+        for (int i = smallList.size() - 1; i >= 0; i--) {
+            if (smallList.get(i) == largeList.get(i)) {
+                return smallList.get(i);
             }
         }
 
-        if (smallList.size() == 1) {
-            return smallList.get(0);
-        } else {
-            return smallList.get(smallList.size() - 1);
-        }
+        return null;
     }
 }
