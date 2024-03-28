@@ -14,7 +14,7 @@ public class Runner {
         node3.left = node2;
         node3.right = node4;
 
-        Codec2 codec = new Codec2();
+        Codec codec = new Codec();
         String data = codec.serialize(node3);
         codec.deserialize(data);
     }
