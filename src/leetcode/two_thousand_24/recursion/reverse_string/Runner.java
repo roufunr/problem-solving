@@ -1,4 +1,4 @@
-package leetcode.two_thousand_24.recursion;
+package leetcode.two_thousand_24.recursion.reverse_string;
 
 public class Runner {
     public static void main(String[] args) {
