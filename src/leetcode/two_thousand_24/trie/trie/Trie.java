@@ -47,7 +47,7 @@ public class Trie {
 
     public boolean startsWith(String prefix) {
         char[] cWord = prefix.toCharArray();
-        TrieNode node = root;
+        TrieNode node = root;                        
         for (char c : cWord) {
             if (!node.children.containsKey(c)) {
                 return false;
