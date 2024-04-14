@@ -35,8 +35,8 @@ public class WordDictionary {
     }
 
     public boolean searchRecursively(char[] word, int idx, TrieNode base) {
-        if (base.children.size() == 0) {
-            return idx == word.length;
+        if (base.children.size() == 0 || idx == word.length) {
+            return base.isWord && idx == word.length;
         }
 
         TrieNode itr = base;
