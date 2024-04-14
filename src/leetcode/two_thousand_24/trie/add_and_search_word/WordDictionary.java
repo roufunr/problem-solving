@@ -34,18 +34,26 @@ public class WordDictionary {
         itr.isWord = true;
     }
 
-    public boolean search(String word) {
-        char[] chars = word.toCharArray();
-        TrieNode itr = root;
-        for (char c : chars) {
-            if (itr.children.containsKey(c) || c == '.') {
-                itr = itr.children.get(c);
-            } else if (itr.children.containsKey('.')) {
-                itr = itr.children.get('.');
-            } else {
-                return false;
-            }
+    public boolean searchRecursively(char[] word, int idx, TrieNode base) {
+        if (base.children.size() == 0) {
+            return idx == word.length;
         }
-        return itr.isWord;
+
+        TrieNode itr = base;
+        if (itr.children.containsKey(word[idx])) {
+            return searchRecursively(word, idx + 1, base.children.get(word[idx]));
+        } else if (word[idx] == '.') {
+            boolean result = itr.children.size() == 0;
+            for (Map.Entry<Character, TrieNode> entry : itr.children.entrySet()) {
+                result |= searchRecursively(word, idx + 1, entry.getValue());
+            }
+            return result;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean search(String word) {
+        return searchRecursively(word.toCharArray(), 0, root);
     }
 }
