@@ -98,7 +98,7 @@ public class Solution {
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (trie.search("" + board[i][j])) {
+                if (trie.startsWith("" + board[i][j])) {
                     String prefix = "";
                     Set<String> visited = new HashSet<>();
                     dfs(prefix, i, j, board, visited, trie, foundWords);
