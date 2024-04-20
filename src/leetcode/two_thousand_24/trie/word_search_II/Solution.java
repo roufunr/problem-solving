@@ -13,10 +13,10 @@ class Node {
     public boolean isWord;
 }
 
-class Trie {
+public class Solution {
     private Node root;
 
-    public Trie() {
+    public Solution() {
         root = new Node();
         root.str = "";
     }
@@ -35,62 +35,35 @@ class Trie {
         node.isWord = true;
     }
 
-    public boolean search(String word) {
-        char[] cWord = word.toCharArray();
-        Node node = root;
-        for (char c : cWord) {
-            if (!node.children.containsKey(c)) {
-                return false;
-            }
-            node = node.children.get(c);
-        }
-        return word.equals(node.str) && node.isWord;
-    }
-
-    public boolean startsWith(String prefix) {
-        char[] cWord = prefix.toCharArray();
-        Node node = root;
-        for (char c : cWord) {
-            if (!node.children.containsKey(c)) {
-                return false;
-            }
-            node = node.children.get(c);
-        }
-        return true;
-    }
-}
-
-public class Solution {
-
-    private void dfs(String prefix, int x, int y, char[][] board, Set<String> visited, Trie trie,
+    private void dfs(int x, int y, char[][] board, Set<String> visited, Node trieNode,
             Set<String> foundWords) {
         int rows = board.length;
         int cols = board[0].length;
 
-        if (x >= rows || x < 0 || y >= cols || y < 0 || !trie.startsWith(prefix)
+        if (x >= rows || x < 0 || y >= cols || y < 0 || !trieNode.children.containsKey(board[x][y])
                 || visited.contains(x + "_" + y)) {
             return;
         }
 
-        prefix += board[x][y];
+        trieNode = trieNode.children.get(board[x][y]);
 
-        if (trie.search(prefix)) {
-            foundWords.add(prefix);
+        if (trieNode.isWord) {
+            foundWords.add(trieNode.str);
         }
+        
         visited.add(x + "_" + y);
 
-        dfs(prefix, x + 1, y, board, visited, trie, foundWords);
-        dfs(prefix, x - 1, y, board, visited, trie, foundWords);
-        dfs(prefix, x, y + 1, board, visited, trie, foundWords);
-        dfs(prefix, x, y - 1, board, visited, trie, foundWords);
+        dfs(x + 1, y, board, visited, trieNode, foundWords);
+        dfs(x - 1, y, board, visited, trieNode, foundWords);
+        dfs(x, y + 1, board, visited, trieNode, foundWords);
+        dfs(x, y - 1, board, visited, trieNode, foundWords);
 
         visited.remove(x + "_" + y);
     }
 
     public List<String> findWords(char[][] board, String[] words) {
-        Trie trie = new Trie();
         for (String word : words) {
-            trie.insert(word);
+            insert(word);
         }
         Set<String> foundWords = new HashSet<>();
         int rows = board.length;
@@ -98,11 +71,8 @@ public class Solution {
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                if (trie.startsWith("" + board[i][j])) {
-                    String prefix = "";
-                    Set<String> visited = new HashSet<>();
-                    dfs(prefix, i, j, board, visited, trie, foundWords);
-                }
+                Set<String> visited = new HashSet<>();
+                dfs(i, j, board, visited, root, foundWords);
             }
         }
 
