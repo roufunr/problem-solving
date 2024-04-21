@@ -20,6 +20,10 @@ public class Solution {
     }
 
     private void insert(String word, int idx) {
+        if (word.length() == 0) {
+            root.wordIdx = idx;
+            return;
+        }
         char[] cWord = word.toCharArray();
         Node node = root;
         for (char c : cWord) {
