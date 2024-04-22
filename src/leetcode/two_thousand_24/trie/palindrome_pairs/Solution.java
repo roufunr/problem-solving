@@ -1,76 +1,92 @@
 package leetcode.two_thousand_24.trie.palindrome_pairs;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class Node {
-    public StringBuffer str = new StringBuffer();
-    public Map<Character, Node> children = new HashMap<>();
+class TrieNode {
+    public Map<Character, TrieNode> children = new HashMap<>();
     public int wordIdx = -1;
+    List<Integer> palindromeIdxs = new ArrayList<>();
 }
 
 public class Solution {
-    private Node root;
+    private TrieNode root;
 
     public Solution() {
-        root = new Node();
-        root.str.append("");
+        root = new TrieNode();
     }
 
-    private void insert(String word, int idx) {
-        if (word.length() == 0) {
+    private boolean isPalindrome(String word, int fromIdx) {
+        int left = fromIdx;
+        int right = word.length() - 1;
+        while (left <= right) {
+            if (word.charAt(left) != word.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    private void insertInTrie(String word, int idx) {
+        if (word.isEmpty() || "".equals(word)) {
             root.wordIdx = idx;
-            return;
         }
-        char[] cWord = word.toCharArray();
-        Node node = root;
-        for (char c : cWord) {
-            if (!node.children.containsKey(c)) {
-                Node newNode = new Node();
-                newNode.str.append(node.str).append(c);
-                node.children.put(c, newNode);
+        String reverseWord = new StringBuffer(word).reverse().toString();
+        TrieNode itrNode = root;
+        for (int i = 0; i < reverseWord.length(); i++) {
+            if (isPalindrome(reverseWord, i)) {
+                itrNode.palindromeIdxs.add(idx);
             }
-            node = node.children.get(c);
-        }
-        node.wordIdx = idx;
-    }
-
-    private int matchWithSuffix(String suffix, int suffixIdx) {
-        char[] suffixCharArray = suffix.toCharArray();
-        Node itrNode = root;
-        for (int i = suffixCharArray.length - 1; i >= 0; i--) {
-            if (itrNode.wordIdx > -1 && suffixIdx != itrNode.wordIdx) {
-                return itrNode.wordIdx;
+            char c = reverseWord.charAt(i);
+            if (!itrNode.children.containsKey(c)) {
+                TrieNode newNode = new TrieNode();
+                itrNode.children.put(c, newNode);
             }
-            if (!itrNode.children.containsKey(suffixCharArray[i])) {
-                return -1;
-            }
-            itrNode = itrNode.children.get(suffixCharArray[i]);
+            itrNode = itrNode.children.get(c);
         }
-
-        if (itrNode.wordIdx > -1 && suffixIdx != itrNode.wordIdx) {
-            return itrNode.wordIdx;
-        } else {
-            return -1;
-        }
+        itrNode.wordIdx = idx;
     }
 
     public List<List<Integer>> palindromePairs(String[] words) {
         for (int i = 0; i < words.length; i++) {
-            insert(words[i], i);
+            insertInTrie(words[i], i);
         }
-        List<List<Integer>> ans = new ArrayList<>();
+
+        List<List<Integer>> results = new ArrayList<>();
         for (int i = 0; i < words.length; i++) {
-            int fromIdx = matchWithSuffix(words[i], i);
-            if (fromIdx > -1) {
-                List<Integer> pair = new ArrayList<>();
-                pair.add(fromIdx);
-                pair.add(i);
-                ans.add(pair);
+            TrieNode itrNode = root;
+            boolean isTrieBranchEqualOrGreater = false;
+            for (int j = 0; j < words[i].length(); j++) {
+                char c = words[i].charAt(j);
+                if (!itrNode.children.containsKey(c)) {
+                    if (isPalindrome(words[i], j)) {
+                        results.add(Arrays.asList(itrNode.wordIdx, i));
+                    }
+                    break;
+                }
+                itrNode = itrNode.children.get(c);
+                if (j == words[i].length() - 1 && itrNode.wordIdx == -1) {
+                    isTrieBranchEqualOrGreater = true;
+                }
+            }
+
+            if (itrNode.wordIdx > -1 && !isTrieBranchEqualOrGreater) {
+                if (i != itrNode.wordIdx)
+                    results.add(Arrays.asList(i, itrNode.wordIdx));
+            }
+
+            if (itrNode.palindromeIdxs.size() > 0) {
+                for (int j = 0; j < itrNode.palindromeIdxs.size(); j++) {
+                    if (i != itrNode.palindromeIdxs.get(j))
+                        results.add(Arrays.asList(i, itrNode.palindromeIdxs.get(j)));
+                }
             }
         }
-        return ans;
+        return results;
     }
 }
