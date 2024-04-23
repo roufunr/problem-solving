@@ -33,9 +33,6 @@ public class Solution {
     }
 
     private void insertInTrie(String word, int idx) {
-        if (word.isEmpty() || "".equals(word)) {
-            root.wordIdx = idx;
-        }
         String reverseWord = new StringBuffer(word).reverse().toString();
         TrieNode itrNode = root;
         for (int i = 0; i < reverseWord.length(); i++) {
@@ -60,30 +57,33 @@ public class Solution {
         List<List<Integer>> results = new ArrayList<>();
         for (int i = 0; i < words.length; i++) {
             TrieNode itrNode = root;
-            boolean isTrieBranchEqualOrGreater = false;
+            int isBreak = -1;
             for (int j = 0; j < words[i].length(); j++) {
+                if (itrNode.wordIdx == 0 && isPalindrome(words[i], j)) {
+                    results.add(Arrays.asList(itrNode.wordIdx, i));
+                    break;
+                }
+
                 char c = words[i].charAt(j);
                 if (!itrNode.children.containsKey(c)) {
-                    if (isPalindrome(words[i], j)) {
-                        results.add(Arrays.asList(itrNode.wordIdx, i));
-                    }
+                    isBreak = j;
                     break;
                 }
                 itrNode = itrNode.children.get(c);
-                if (j == words[i].length() - 1 && itrNode.wordIdx == -1) {
-                    isTrieBranchEqualOrGreater = true;
-                }
             }
-
-            if (itrNode.wordIdx > -1 && !isTrieBranchEqualOrGreater) {
-                if (i != itrNode.wordIdx)
-                    results.add(Arrays.asList(i, itrNode.wordIdx));
+            
+            if (isBreak != -1) {
+                if (isPalindrome(words[i], isBreak))
+                    results.add(Arrays.asList(itrNode.wordIdx, i));
+                continue;
+            }
+            if (itrNode.wordIdx > -1 && i != itrNode.wordIdx) {
+                results.add(Arrays.asList(i, itrNode.wordIdx));
             }
 
             if (itrNode.palindromeIdxs.size() > 0) {
                 for (int j = 0; j < itrNode.palindromeIdxs.size(); j++) {
-                    if (i != itrNode.palindromeIdxs.get(j))
-                        results.add(Arrays.asList(i, itrNode.palindromeIdxs.get(j)));
+                    results.add(Arrays.asList(i, itrNode.palindromeIdxs.get(j)));
                 }
             }
         }
