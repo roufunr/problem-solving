@@ -2,7 +2,7 @@ package leetcode.two_thousand_24.bst.validate;
 
 import leetcode.two_thousand_24.binary_tree.tree.TreeNode;
 
-public class Solution {
+public class Solution_v1 {
     private long findMin(TreeNode node) {
         if (node == null) {
             return Long.MAX_VALUE;
@@ -15,7 +15,7 @@ public class Solution {
 
     private long findMax(TreeNode node) {
         if (node == null) {
-            return Integer.MIN_VALUE;
+            return Long.MIN_VALUE;
         }
         long leftMax = findMax(node.left);
         long rightMax = findMax(node.right);
@@ -27,25 +27,13 @@ public class Solution {
         if (root == null) {
             return true;
         }
-        if (root.left != null) {
-            long leftMax = findMax(root.left);
-            if (leftMax >= root.val) {
-                return false;
-            }
-        }
-        if (root.right != null) {
-            long rightMin = findMin(root.right);
-            if (rightMin <= root.val) {
-                return false;
-            }
-        }
 
-        // long leftMax = findMax(root.left);
-        // long rightMin = findMin(root.right);
+        long leftMax = findMax(root.left);
+        long rightMin = findMin(root.right);
 
-        // if (leftMax > root.val || rightMin < root.val) {
-        // return false;
-        // }
+        if (leftMax >= root.val || rightMin <= root.val) {
+            return false;
+        }
 
         return isValidBST(root.left) && isValidBST(root.right);
     }
