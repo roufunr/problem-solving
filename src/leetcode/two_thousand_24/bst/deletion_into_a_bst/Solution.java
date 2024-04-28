@@ -4,17 +4,17 @@ import leetcode.two_thousand_24.bst.TreeNode;
 
 public class Solution {
     private int findMin(TreeNode node) {
-        if(node == null) {
+        if (node == null) {
             return Integer.MAX_VALUE;
         }
 
         return Math.min(node.val, findMin(node.left));
     }
+
     public TreeNode deleteNode(TreeNode root, int key) {
         if (root == null) {
             return null;
         }
-
         if (root.val == key) {
             if (root.left == null) {
                 return root.right;
@@ -30,7 +30,6 @@ public class Solution {
         } else {
             root.right = deleteNode(root.right, key);
         }
-
         return root;
     }
 }
