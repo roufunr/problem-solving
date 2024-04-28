@@ -7,7 +7,6 @@ public class Solution {
         if (node == null) {
             return Integer.MAX_VALUE;
         }
-
         return Math.min(node.val, findMin(node.left));
     }
 
