@@ -2,35 +2,32 @@ package leetcode.two_thousand_24.bst.balanced_tree;
 
 import leetcode.two_thousand_24.bst.TreeNode;
 
+// better solution in terms of clean code
+class Pair {
+    public int height;
+    public boolean isBalanced;
+
+    public Pair(int height, boolean isBalanced) {
+        this.height = height;
+        this.isBalanced = isBalanced;
+    }
+}
+
 public class Solution {
-    public int getHeight(TreeNode node) {
+    public Pair getHeight(TreeNode node) {
         if (node == null) {
-            return 0;
+            return new Pair(0, true);
         }
-        int leftHeight = getHeight(node.left);
-        int rightHeight = getHeight(node.right);
-        if (leftHeight == -1 || rightHeight == -1) {
-            return -1;
-        } else if (Math.abs(rightHeight - leftHeight) > 1) {
-            return -1;
+        Pair leftPair = getHeight(node.left);
+        Pair rightPair = getHeight(node.right);
+        if (leftPair.isBalanced && rightPair.isBalanced && Math.abs(leftPair.height - rightPair.height) <= 1) {
+            return new Pair(Math.max(leftPair.height, rightPair.height) + 1, true);
         } else {
-            return 1 + Math.max(leftHeight, rightHeight);
+            return new Pair(Math.max(leftPair.height, rightPair.height) + 1, false);
         }
     }
 
     public boolean isBalanced(TreeNode root) {
-        if (root == null) {
-            return true;
-        }
-
-        int leftHeight = getHeight(root.left);
-        int rightHeight = getHeight(root.right);
-        if (leftHeight == -1 || rightHeight == -1) {
-            return false;
-        } else if (Math.abs(rightHeight - leftHeight) > 1) {
-            return false;
-        } else {
-            return true;
-        }
+        return getHeight(root).isBalanced;
     }
 }
