@@ -23,8 +23,8 @@ public class Solution {
             return true;
         }
 
-        double leftHeight = (double) getHeight(root.left);
-        double rightHeight = (double) getHeight(root.right);
+        int leftHeight = getHeight(root.left);
+        int rightHeight = getHeight(root.right);
         if (leftHeight == -1 || rightHeight == -1) {
             return false;
         } else if (Math.abs(rightHeight - leftHeight) > 1) {
