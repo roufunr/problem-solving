@@ -15,12 +15,6 @@ public class Solution {
         }
         return root;
     }
-
-    // 0 1 2 3
-    // 1 3
-    // 0 4
-    //
-    // 0 1 2 3 4
     public TreeNode sortedArrayToBST(int[] nums) {
         int middleIdx = nums.length / 2;
         TreeNode root = null;
