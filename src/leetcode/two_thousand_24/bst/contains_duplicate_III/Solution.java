@@ -4,7 +4,6 @@ public class Solution {
 
     // bruteforce Solution
     // encounters TLE
-
     public boolean containsNearbyAlmostDuplicate(int[] nums, int indexDiff, int valueDiff) {
         for (int i = 0; i < nums.length; i++) {
             for (int j = 0; j < nums.length; j++) {
@@ -13,7 +12,6 @@ public class Solution {
                 }
                 int currentIdxDiff = Math.abs(i - j);
                 int currentValueDiff = Math.abs(nums[i] - nums[j]);
-
                 if (currentIdxDiff <= indexDiff && currentValueDiff <= valueDiff) {
                     return true;
                 }
