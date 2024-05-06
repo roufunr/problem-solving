@@ -2,28 +2,23 @@ package leetcode.two_thousand_24.n_ary.preorder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import leetcode.two_thousand_24.n_ary.Node;
 
 public class Solution {
-    List<Integer> ans;
-
-    public Solution() {
-        ans = new ArrayList<>();
-    }
-
-    private void walk(Node node) {
-        if (node == null) {
-            return;
-        }
-        ans.add(node.val);
-        for (Node n : node.children) {
-            walk(n);
-        }
-    }
-
+    // iterative solution
     public List<Integer> preorder(Node root) {
-        walk(root);
+        List<Integer> ans = new ArrayList<>();
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            Node top = stack.pop();
+            ans.add(top.val);
+            for (int i = top.children.size() - 1; i >= 0; i--) {
+                stack.push(top.children.get(i));
+            }
+        }
         return ans;
     }
 }
