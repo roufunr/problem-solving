@@ -21,16 +21,16 @@ public class Solution {
         int rightItr = 0;
         int mItr = 0;
         while (mItr < mergedArray.length) {
-            if (leftItr < leftArray.length && rightItr < rightArray.length) {
+            if (leftItr >= leftArray.length && rightItr < rightArray.length) {
+                mergedArray[mItr++] = rightArray[rightItr++];
+            } else if (leftItr < leftArray.length && rightItr >= rightArray.length) {
+                mergedArray[mItr++] = leftArray[leftItr++];
+            } else {
                 if (leftArray[leftItr] <= rightArray[rightItr]) {
                     mergedArray[mItr++] = leftArray[leftItr++];
                 } else {
                     mergedArray[mItr++] = rightArray[rightItr++];
                 }
-            } else if (leftItr >= leftArray.length && rightItr < rightArray.length) {
-                mergedArray[mItr++] = rightArray[rightItr++];
-            } else if (leftItr < leftArray.length && rightItr >= rightArray.length) {
-                mergedArray[mItr++] = leftArray[leftItr++];
             }
         }
         return mergedArray;
