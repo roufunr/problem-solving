@@ -40,13 +40,6 @@ public class Solution {
             }
         }
 
-        // long leftMax = findMax(root.left);
-        // long rightMin = findMin(root.right);
-
-        // if (leftMax > root.val || rightMin < root.val) {
-        // return false;
-        // }
-
         return isValidBST(root.left) && isValidBST(root.right);
     }
 }
