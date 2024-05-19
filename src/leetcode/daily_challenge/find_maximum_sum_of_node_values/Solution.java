@@ -5,42 +5,25 @@ import java.util.List;
 
 public class Solution {
     public long maximumValueSum(int[] nums, int k, int[][] edges) {
-        List<Integer> positiveImpactIdx = new ArrayList<>();
-        List<Integer> negativeImpactIdx = new ArrayList<>();
         long maxSum = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if ((nums[i] ^ k) >= nums[i]) {
-                positiveImpactIdx.add(i);
-                maxSum += (nums[i] ^ k);
-            } else {
-                maxSum += nums[i];
-                negativeImpactIdx.add(i);
-            }
+        for(int n : nums) {
+            maxSum += n;
         }
-        if (positiveImpactIdx.size() % 2 == 1) {
-            int minIdx = -1;
-            int minImpact = Integer.MAX_VALUE;
-            for (int i = 0; i < positiveImpactIdx.size(); i++) {
-                if ((nums[positiveImpactIdx.get(i)] ^ k) < minImpact) {
-                    minIdx = positiveImpactIdx.get(i);
-                    minImpact = (nums[minIdx] ^ k) - nums[minIdx];
-                }
+        int positiveImpactCount = 0;
+        long totalDiff = 0;
+        long minNegDiff = Long.MAX_VALUE;
+        for(int i = 0; i < nums.length; i++) {
+            long diff = (nums[i]^k) - nums[i];
+            if(diff > 0) {
+                totalDiff += diff;
+                positiveImpactCount++;
             }
-            // maxSum = maxSum + nums[minIdx] - minImpact;
-            int negMinIdx = -1;
-            int negMinImpact = Integer.MAX_VALUE;
-            for (int i = 0; i < negativeImpactIdx.size(); i++) {
-                int absVal = Math.abs((nums[negativeImpactIdx.get(i)] ^ k) - nums[negativeImpactIdx.get(i)]);
-                if (absVal < negMinImpact) {
-                    negMinIdx = negativeImpactIdx.get(i);
-                    negMinImpact = absVal;
-                }
-            }
+            minNegDiff = Math.min(Math.abs(diff), minNegDiff);
+        }
 
-            if (minImpact - negMinImpact >= 0) {
-                maxSum -= negMinImpact;
-            }
+        if(positiveImpactCount % 2 == 1) {
+            totalDiff -= minNegDiff;
         }
-        return maxSum;
+        return maxSum + totalDiff;
     }
 }
