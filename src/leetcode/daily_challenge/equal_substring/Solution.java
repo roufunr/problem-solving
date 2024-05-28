@@ -8,7 +8,6 @@ public class Solution {
         for (int i = 0; i < distance.length; i++) {
             distance[i] = Math.abs(s.charAt(i) - t.charAt(i));
         }
-
         int counter = 0;
         int substringCost = 0;
         int left = 0;
@@ -22,7 +21,7 @@ public class Solution {
                     substringCost += distance[right];
                     right++;
                 } else {
-                    if(left < right) { 
+                    if (left < right) {
                         substringCost -= distance[left];
                     }
                     break;
