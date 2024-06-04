@@ -3,6 +3,7 @@ package leetcode.daily_challenge.longest_palindrome;
 import java.util.HashMap;
 import java.util.Map;
 
+// Hashmap Solution
 public class Solution {
     public int longestPalindrome(String s) {
         Map<Character, Integer> map = new HashMap<>();
