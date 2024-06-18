@@ -39,7 +39,6 @@ public class Solution {
             } else {
                 pq.poll();
             }
-
             if (i == w.length) {
                 break;
             }
