@@ -1,6 +1,5 @@
 package leetcode.daily_challenge.most_profit_assigning_task;
 import java.util.*;
-
 class Pair {
     public int p;
     public int d;
@@ -10,7 +9,6 @@ class Pair {
         this.d = d;
     }
 }
-
 public class Solution {
     public int maxProfitAssignment(int[] difficulty, int[] profit, int[] worker) {
         Comparator<Pair> maxComp = new Comparator<Pair>() {
