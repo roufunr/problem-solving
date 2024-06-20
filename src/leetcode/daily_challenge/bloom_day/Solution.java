@@ -1,7 +1,4 @@
 package leetcode.daily_challenge.bloom_day;
-
-import java.util.*;
-
 public class Solution {
 
     // Calculate the number of bouquets that can be made by day 'mid'.
