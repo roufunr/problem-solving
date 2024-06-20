@@ -5,46 +5,44 @@ import java.util.*;
 public class Solution {
 
     // Calculate the number of bouquets that can be made by day 'mid'.
-    private int calculateBouquets(int[] bloomDay, int mid, int k) {
-        int bouquets = 0;
-        int flowers = 0;
-
-        for (int day : bloomDay) {
-            if (day <= mid) {
-                flowers++;
-                if (flowers == k) {
-                    bouquets++;
-                    flowers = 0;
-                }
+    private int countBouquets(int[] bloomDay, int day, int k) {
+        int bCount = 0;
+        int count = 0;
+        for (int i = 0; i < bloomDay.length; i++) {
+            if (bloomDay[i] <= day) {
+                count++;
             } else {
-                flowers = 0;
+                count = 0;
+            }
+            if (count == k) {
+                bCount++;
+                count = 0;
             }
         }
-
-        return bouquets;
+        return bCount;
     }
 
     public int minDays(int[] bloomDay, int m, int k) {
-        int left = 0;
-        int right = 0;
+        int startDay = Integer.MAX_VALUE;
+        int endDay = Integer.MIN_VALUE;
         for (int day : bloomDay) {
-            if (day > right) {
-                right = day;
+            if (startDay >= day) {
+                startDay = day;
+            }
+            if (endDay <= day) {
+                endDay = day;
             }
         }
-
-        int result = -1;
-        while (left <= right) {
-            int mid = left + (right - left) / 2;
-
-            if (calculateBouquets(bloomDay, mid, k) >= m) {
-                result = mid;
-                right = mid - 1;
+        int minDays = -1;
+        while (startDay <= endDay) {
+            int mid = startDay + (endDay - startDay) / 2;
+            if (countBouquets(bloomDay, mid, k) >= m) {
+                minDays = mid;
+                endDay = mid - 1;
             } else {
-                left = mid + 1;
+                startDay = mid + 1;
             }
         }
-
-        return result;
+        return minDays;
     }
 }
