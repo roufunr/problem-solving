@@ -1,7 +1,5 @@
 package leetcode.daily_challenge.bloom_day;
 public class Solution {
-
-    // Calculate the number of bouquets that can be made by day 'mid'.
     private int countBouquets(int[] bloomDay, int day, int k) {
         int bCount = 0;
         int count = 0;
