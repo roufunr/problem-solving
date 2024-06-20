@@ -1,6 +1,5 @@
 package leetcode.daily_challenge.maximum_of_min_distant_bucket;
 
-import java.util.*;
 
 public class Solution_II {
     // you can't use count sort because there are memory limit
