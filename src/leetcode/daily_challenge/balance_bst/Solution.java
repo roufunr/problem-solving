@@ -15,14 +15,14 @@ public class Solution {
         inorder(node.right);
     }
 
-    private TreeNode constructTree(List<Integer> elements, int start, int end) {
+    private TreeNode constructTree(int start, int end) {
         if (start > end) {
             return null;
         }
         int mid = start + (end - start) / 2;
         TreeNode node = new TreeNode(elements.get(mid));
-        node.left = constructTree(elements, start, mid - 1);
-        node.right = constructTree(elements, mid + 1, end);
+        node.left = constructTree(start, mid - 1);
+        node.right = constructTree(mid + 1, end);
         return node;
     }
 
@@ -30,6 +30,6 @@ public class Solution {
         elements = new ArrayList<>();
         inorder(root);
         Collections.sort(elements);
-        return constructTree(elements, 0, elements.size() - 1);
+        return constructTree(0, elements.size() - 1);
     }
 }
