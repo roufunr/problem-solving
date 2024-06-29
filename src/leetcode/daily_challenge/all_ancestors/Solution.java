@@ -3,7 +3,7 @@ package leetcode.daily_challenge.all_ancestors;
 import java.util.*;
 
 public class Solution {
-    public void bfs(int i, List<List<Integer>> adjList, boolean[] parents) {
+    private void bfs(int i, List<List<Integer>> adjList, boolean[] parents) {
         Queue<Integer> queue = new LinkedList<>();
         queue.add(i);
         while (!queue.isEmpty()) {
@@ -15,6 +15,21 @@ public class Solution {
                     parents[v] = true;
                     queue.offer(v);
                 }
+            }
+        }
+    }
+
+    // dfs performed well
+    private void dfs(int from, List<List<Integer>> adjList, boolean[] parents) {
+        if(adjList.get(from).size() == 0) {
+            return;
+        }
+        for(int v : adjList.get(from)) {
+            if(parents[v]) {
+                continue;
+            } else {
+                parents[v] = true;
+                dfs(v, adjList, parents);
             }
         }
     }
