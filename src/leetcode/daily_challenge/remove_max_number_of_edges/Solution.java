@@ -64,18 +64,16 @@ public class Solution {
                 if ((union(edge[1], edge[2], 0))) {
                     count++;
                 }
-            } else if (edge[0] == 2){
+            } else if (edge[0] == 2) {
                 if ((union(edge[1], edge[2], 1))) {
                     count++;
                 }
             }
         }
-
         if (checkConnectivity(n, 0) && checkConnectivity(n, 1)) {
             return edges.length - count;
         } else {
             return -1;
         }
-
     }
 }
