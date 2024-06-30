@@ -1,7 +1,7 @@
 package leetcode.extras.redundant_connection;
 public class Solution {
     
-    private int find(int v, int[] parent, int[] rank) {
+    private int find(int v, int[] parent) {
         int p = parent[v];
         while(p != parent[p]) {
             parent[p] = parent[parent[p]];
@@ -11,8 +11,8 @@ public class Solution {
     }
 
     private boolean union(int u, int v, int[] parent, int[] rank) {
-        int fu = find(u, parent, rank);
-        int fv = find(v, parent, rank);
+        int fu = find(u, parent);
+        int fv = find(v, parent);
         if(fu == fv) {
             return false;
         } 
