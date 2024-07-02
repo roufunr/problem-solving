@@ -1,7 +1,6 @@
 package leetcode.extras.sudoku_solver;
 
 public class Solution {
-
     private boolean solve(char[][] board, int i, int j) {
         if (i == 8 && j == 9) {
             return true;
@@ -11,14 +10,12 @@ public class Solution {
             j = 0;
         }
         if (board[i][j] != '.') {
-            j += 1;
-            solve(board, i, j);
+            return solve(board, i, j + 1);
         }
         for (int x = 1; x < 10; x++) {
             if (safePlacement(board, (char) (x + '0'), i, j)) {
                 board[i][j] = (char) (x + '0');
-                j+=1;
-                if (solve(board, i, j)) {
+                if (solve(board, i, j + 1)) {
                     return true;
                 } else {
                     board[i][j] = '.';
@@ -26,6 +23,7 @@ public class Solution {
             }
 
         }
+
         return false;
     }
 
@@ -40,13 +38,11 @@ public class Solution {
                 return false;
             }
         }
-
         int start_i = row / 3;
         int start_j = col / 3;
-
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                if (board[start_i + i][start_j + j] == p) {
+                if (board[start_i * 3 + i][start_j * 3 + j] == p) {
                     return false;
                 }
             }
