@@ -37,7 +37,7 @@ public class SolutionII {
         this.n = n;
         this.ans = new ArrayList<>();
         List<Character> parenthesis = new ArrayList<>();
-        helper(parenthesis);
+        helper(parenthesis, 0, 0);
         return ans;
     }
 
