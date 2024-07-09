@@ -2,7 +2,7 @@ package leetcode.two_thousand_24.dp.delete_and_earn;
 
 import java.util.*;
 
-public class SolutionII { // dp solution
+public class SolutionII { // dp solution top down
     Map<Integer, Integer> values = new HashMap<>();
     Map<Integer, Integer> dp = new HashMap<>();
 
