@@ -1,7 +1,5 @@
 package leetcode.two_thousand_24.dp.min_cost_climbing_stairs;
 
-import java.util.HashMap;
-
 public class SolutionII { // iterative solution // faster
     public int minCostClimbingStairs(int[] cost) {
         int[] dp = new int[cost.length + 1];
