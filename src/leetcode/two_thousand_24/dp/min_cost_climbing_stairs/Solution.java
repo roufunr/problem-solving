@@ -3,7 +3,7 @@ package leetcode.two_thousand_24.dp.min_cost_climbing_stairs;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Solution {
+public class Solution { // recursive solution
     public Map<Integer, Integer> dp;
 
     private int fn(int[] cost, int currentStair) {
