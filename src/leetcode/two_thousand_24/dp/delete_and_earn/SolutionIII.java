@@ -5,22 +5,22 @@ import java.util.Map;
 
 public class SolutionIII {
 
-    public int deleteAndEarn(int[] nums) { // iterative approach better for array (NOT MAP)
-        Map<Integer, Integer> values = new HashMap<>();
-
-        int maxVal = Integer.MIN_VALUE;
-        for (int n : nums) {
-            values.put(n, values.getOrDefault(n, 0) + n);
-            maxVal = Math.max(maxVal, n);
+    public int maximumScore(int[] nums, int[] multipliers) {
+        int[][] dp = new int[nums.length + 1][multipliers.length];
+        for(int i = 1; i < dp.length; i++) {
+            dp[i][multipliers.length - 1] = nums[i - 1] * multipliers[multipliers.length - 1];
         }
-        int[] dp = new int[maxVal + 1];
-        dp[0] = 0;
-        dp[1] = values.getOrDefault(1, 0);
-        for (int i = 2; i <= maxVal; i++) {
-            int gain = values.getOrDefault(i, 0);
-            dp[i] = Math.max(gain + dp[i - 2], dp[i - 1]);
+        for(int i = dp.length - 1; i > 0; i--) {
+            for(int j = multipliers.length - 2; j >= 0; j--) {
+                dp[i][j] = Math.max(dp[i - 1][j + 1] + nums[i - 2] * multipliers[j + 1], dp[i][j + 1] + nums[i + j - nums.length - 1] * multipliers[j + 1]);
+            }
         }
-        return dp[maxVal];
+        int max = Integer.MIN_VALUE;
+        for(int[] dprow : dp) {
+            for(int n : dprow) {
+                max = Math.max(n, max);
+            }
+        }
+        return max;
     }
-
 }
