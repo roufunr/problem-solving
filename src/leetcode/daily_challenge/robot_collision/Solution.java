@@ -1,4 +1,4 @@
-package leetcode.daily_challenge.robot.collision;
+package leetcode.daily_challenge.robot_collision;
 
 import java.util.*;
 
@@ -14,7 +14,7 @@ class Robot {
     }
 }
 
-class Solution {
+public class Solution {
     public List<Integer> survivedRobotsHealths(int[] positions, int[] healths, String directions) {
         List<Robot> robots = new ArrayList<>();
         for (int i = 0; i < positions.length; i++) {
