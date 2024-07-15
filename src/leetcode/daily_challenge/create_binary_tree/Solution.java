@@ -11,7 +11,7 @@ class Child {
         this.right = null;
     }
 }
-public class Solution {
+public class Solution { // accepted and solved with extra class
     private TreeNode create(Integer nodeVal, Map<Integer, Child> map) {
         if(nodeVal == null) {
             return null;
