@@ -3,7 +3,7 @@ package leetcode.daily_challenge.delete_nodes_make_forest;
 import leetcode.two_thousand_24.bst.TreeNode;
 import java.util.*;
 
-public class Solution {
+public class Solution { // solved with P Map
     private Map<Integer, TreeNode> pMap = new HashMap<>();
 
     private void storeInPMap(TreeNode node) {
