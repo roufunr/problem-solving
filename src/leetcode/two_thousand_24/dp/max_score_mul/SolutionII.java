@@ -13,7 +13,9 @@ public class SolutionII { // reduced the state variable to 1
             return 0;
         }
         String key = i + "_" + k;
+        
         if (cache.containsKey(key)) {
+            System.out.println(key);
             // System.err.println(key + " " + cache.get(key));
             return cache.get(key);
         }
