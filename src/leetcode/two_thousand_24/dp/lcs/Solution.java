@@ -18,8 +18,9 @@ public class Solution {
         int ans = Integer.MIN_VALUE;
         if (text1.charAt(i) == text2.charAt(j)) {
             ans = Math.max(ans, 1 + dp(i + 1, j + 1));
+        } else {
+            ans = Math.max(dp(i, j + 1), dp(i + 1, j));
         }
-        ans = Math.max(ans, Math.max(dp(i, j + 1), dp(i + 1, j)));
         cache.put(key, ans);
         return ans;
     }
