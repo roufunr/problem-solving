@@ -2,6 +2,7 @@ package others.min_height_tree;
 import java.util.*;
 
 public class Solution { // got TLE
+    // node by node BFS is not working
     private List<List<Integer>> adj = new ArrayList<>();
     private void construct(int n, int[][] edges) {
         for(int i = 0; i < n; i++) {
