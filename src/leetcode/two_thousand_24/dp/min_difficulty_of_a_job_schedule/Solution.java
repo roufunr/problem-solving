@@ -2,7 +2,6 @@ package leetcode.two_thousand_24.dp.min_difficulty_of_a_job_schedule;
 
 public class Solution {
     private int[] jobDifficulty;
-    private int d;
     private Integer[][] dp;
 
     private int helper(int idx, int remainingDays) {
@@ -32,7 +31,6 @@ public class Solution {
         }
         dp = new Integer[jobDifficulty.length][d + 1];
         this.jobDifficulty = jobDifficulty;
-        this.d = d;
         return helper(0, d);
     }
 }
