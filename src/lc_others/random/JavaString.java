@@ -1,4 +1,4 @@
-package others.random;
+package lc_others.random;
 
 public class JavaString {
     public static void main(String[] args) {

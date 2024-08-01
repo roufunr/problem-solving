@@ -1,4 +1,4 @@
-package others.top_sort;
+package lc_others.top_sort;
 
 public class Runner {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package others.toy.oct12_2022;
+package lc_others.toy.oct12_2022;
 
 public class Calculation {
     int z;

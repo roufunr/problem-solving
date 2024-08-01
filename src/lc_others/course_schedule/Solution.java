@@ -1,4 +1,4 @@
-package others.course_schedule;
+package lc_others.course_schedule;
 
 import java.util.*;
 public class Solution {

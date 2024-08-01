@@ -1,4 +1,4 @@
-package others.top_sort;
+package lc_others.top_sort;
 
 import java.util.*;
 

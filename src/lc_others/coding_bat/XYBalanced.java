@@ -1,4 +1,4 @@
-package others.coding_bat;
+package lc_others.coding_bat;
 
 public class XYBalanced {
     public boolean xyBalance(String str) {

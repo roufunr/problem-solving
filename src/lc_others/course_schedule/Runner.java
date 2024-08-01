@@ -1,5 +1,5 @@
 
-package others.course_schedule;
+package lc_others.course_schedule;
 
 public class Runner {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package others.toy;
+package lc_others.toy;
 
 public class DBTablePrinter {
     private String[][] data;

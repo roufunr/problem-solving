@@ -1,4 +1,4 @@
-package others.random;
+package lc_others.random;
 
 import java.util.Scanner;
 

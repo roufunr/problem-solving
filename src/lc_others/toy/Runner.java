@@ -1,4 +1,4 @@
-package others.toy;
+package lc_others.toy;
 
 public class Runner {
     public static void main(String[] args) {

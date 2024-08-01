@@ -1,4 +1,4 @@
-package others.course_schedule_II;
+package lc_others.course_schedule_II;
 
 import java.util.*;
 

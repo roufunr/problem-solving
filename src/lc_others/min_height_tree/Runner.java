@@ -1,4 +1,4 @@
-package others.min_height_tree;
+package lc_others.min_height_tree;
 
 public class Runner {
     public static void main(String[] args) {

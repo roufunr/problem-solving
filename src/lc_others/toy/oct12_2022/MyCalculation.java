@@ -1,4 +1,4 @@
-package others.toy.oct12_2022;
+package lc_others.toy.oct12_2022;
 
 public class MyCalculation extends Calculation{
     public void multiplication(int x, int y) {
