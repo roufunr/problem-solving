@@ -3,39 +3,31 @@ package leetcode.daily_challenge.august_24.min_swap_to_group_all_1s;
 import java.util.PriorityQueue;
 
 public class Solution {
-    public int minSwaps(int[] nums) { 
-        // int countOne = 0;
-        // for(int n : nums) {
-        // if(n == 1) {
-        // countOne++;
-        // }
-        // }
-
-        PriorityQueue<Integer> countZero = new PriorityQueue<>();
-        int idx = 0;
-        for (int i = 1; i < nums.length; i++) {
-            if (nums[i - 1] == 1 && nums[i] == 0) {
-                idx = i;
-                break;
+    public int minSwaps(int[] nums) {
+        int countOne = 0;
+        for (int n : nums) {
+            if (n == 1) {
+                countOne++;
             }
         }
-        int count = 0;
-        for (int i = 0; i < nums.length; i++) {
-            int j = (idx + i) % nums.length;
-            if (nums[j] == 0) {
-                count++;
-            } else {
-                if (count > 0) {
-                    System.out.println(count);
-                    countZero.offer(count);
-                }
-                count = 0;
+        int one = 0;
+        for (int i = 0; i < countOne; i++) {
+            if (nums[i] == 1) {
+                one++;
             }
         }
-        int swapCount = 0;
-        for (int i = 0; i < countZero.size() - 1; i++) {
-            swapCount += countZero.poll();
+        int maxOne = Integer.MIN_VALUE;
+        maxOne = Math.max(one, maxOne);
+        for (int L = 1; L < nums.length; L++) {
+            int R = (L + countOne - 1) % nums.length;
+            if (nums[L - 1] == 1) {
+                one--;
+            }
+            if (nums[R] == 1) {
+                one++;
+            }
+            maxOne = Math.max(one, maxOne);
         }
-        return swapCount;
+        return countOne - maxOne;
     }
 }
