@@ -1,4 +1,4 @@
-package leetcode.daily_challenge.kth_distinct_string_in_an_array;
+package leetcode.daily_challenge.august_24.kth_distinct_string_in_an_array;
 
 import java.util.*;
 
