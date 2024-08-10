@@ -1,5 +1,6 @@
 package lc_others.sum_of_values_at_indices_with_k_set_bits;
 
+import java.util.*;
 public class Solution {
     private int getSetBitsCount(int n) {
         int count = 0;
