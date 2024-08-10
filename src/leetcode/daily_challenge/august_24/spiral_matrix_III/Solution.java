@@ -1,4 +1,4 @@
-package leetcode.daily_challenge.august_24.sprial_matrix_III;
+package leetcode.daily_challenge.august_24.spiral_matrix_III;
 
 public class Solution {
     public int[][] spiralMatrixIII(int rows, int cols, int rStart, int cStart) {
