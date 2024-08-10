@@ -5,17 +5,16 @@ import java.util.*;
 public class Solution {
     private int minPartition = Integer.MAX_VALUE;
     private String s;
-    private Set<String> power5;
-
+    private Set<String> power5; 
     private void doPartition(int idx, int beginIdx, Set<Integer> partitionIndices) {
-        if (idx == s.length()) {
-            if (beginIdx == s.length()) {
+        if(idx == s.length()) {
+            if(beginIdx == s.length()) {
                 minPartition = Math.min(minPartition, partitionIndices.size());
             }
             return;
         }
-        for (int i = idx; i < s.length(); i++) {
-            if (power5.contains(s.substring(beginIdx, i + 1))) {
+        for(int i = idx; i < s.length(); i++) {
+            if(power5.contains(s.substring(beginIdx, i + 1))) {
                 partitionIndices.add(beginIdx);
                 doPartition(i + 1, i + 1, partitionIndices);
                 partitionIndices.remove(beginIdx);
@@ -24,18 +23,15 @@ public class Solution {
             }
         }
     }
-
     private void setPowerFive() {
-        int i = 0;
+        int i = 0; 
         power5 = new HashSet<>();
-        while (Math.pow(5, i) <= Math.pow(2, 15)) {
-            String binString = Integer.toBinaryString((int) (Math.pow(5, i)));
-            // System.out.println(binString);
+        while(Math.pow(5, i) <= Math.pow(2, 15)) {
+            String binString = Integer.toBinaryString((int)(Math.pow(5, i)));
             power5.add(binString);
             i++;
         }
     }
-
     public int minimumBeautifulSubstrings(String s) {
         this.s = s;
         this.setPowerFive();
