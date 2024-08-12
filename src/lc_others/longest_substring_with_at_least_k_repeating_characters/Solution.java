@@ -6,7 +6,7 @@ public class Solution {
         for (int i = 0; i < s.length(); i++) {
             int[] count = new int[26];
             for (int j = i; j < s.length(); j++) {
-                count[(int) (s.charAt(j) - 'a')]++;
+                count[s.charAt(j) - 'a']++;
                 int lowest = Integer.MAX_VALUE;
                 for (int l = 0; l < 26; l++) {
                     if (count[l] != 0) {
