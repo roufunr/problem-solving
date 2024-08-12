@@ -4,6 +4,6 @@ public class Runner {
     public static void main(String[] args) {
         int[][] grid = { { 5, 2, 4 }, { 3, 0, 5 }, { 0, 7, 2 } };
         int k = 3;
-        new Solution().numberOfPaths(grid, k);
+        new SolutionII().numberOfPaths(grid, k);
     }
 }
