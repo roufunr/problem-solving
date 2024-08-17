@@ -7,13 +7,25 @@ public class Solution {
             dp[i] = points[0][i];
         }
         for (int i = 1; i < points.length; i++) {
+            long[] left = new long[dp.length];
+            long[] right = new long[dp.length];
+            for(int k = 0; k < dp.length; k++) {
+                if(k == 0) {
+                    left[k] = dp[k];
+                } else {
+                    left[k] = Math.max(dp[k], left[k - 1] - 1);
+                }
+            }
+            for(int k = dp.length - 1; k >= 0; k--) {
+                if(k == dp.length - 1) {
+                    right[k] = dp[k];
+                } else {
+                    right[k] = Math.max(dp[k], right[k + 1] - 1);
+                }
+            }
             long[] newDp = new long[dp.length];
             for (int j = 0; j < points[0].length; j++) {
-                long max = points[i][j] + dp[0] - Math.abs(j - 0);
-                for (int k = 1; k < dp.length; k++) {
-                    max = Math.max(points[i][j] + dp[k] - Math.abs(j - k), max);
-                }
-                newDp[j] = max;
+                newDp[j] = Math.max(left[j], right[j]) + points[i][j];
             }
             dp = newDp;
         }
