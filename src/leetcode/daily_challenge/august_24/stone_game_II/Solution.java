@@ -1,4 +1,4 @@
-package leetcode.daily_challenge.august_24.stone_game_II;
+package leetcode.daily_challenge.august_24. ;
 
 public class Solution {
     private int[][][] cache;
