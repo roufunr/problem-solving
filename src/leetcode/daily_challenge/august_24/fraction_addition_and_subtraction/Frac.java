@@ -21,18 +21,12 @@ public class Frac {
         return getGCD(b, a % b);
     }
 
-    private int getLCM(List<Integer> nums) {
-        int g = nums.get(0);
-        long mul = nums.get(0);
-        for (int i = 1; i < nums.size(); i++) {
-            g = getGCD(g, nums.get(i));
-            mul = mul * nums.get(i);
-        }
-        return (int) (mul / g);
+    private int getLCM(int a, int b) {
+        return (a * b) / getGCD(a, b);
     }
 
     public void add(Frac f) {
-        int lcm = getLCM(Arrays.asList(d, f.d));
+        int lcm = getLCM(d, f.d);
         int new_n = ((lcm / d) * n) * (int) Math.pow(-1, neg ? 1 : 0)
                 + ((lcm / f.d) * f.n) * (int) Math.pow(-1, f.neg ? 1 : 0);
         int gcd = getGCD(lcm, Math.abs(new_n));
