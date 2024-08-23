@@ -1,7 +1,4 @@
 package leetcode.daily_challenge.august_24.fraction_addition_and_subtraction;
-
-import java.util.*;
-
 public class Frac {
     // ±numerator/denominator
     public boolean neg;
