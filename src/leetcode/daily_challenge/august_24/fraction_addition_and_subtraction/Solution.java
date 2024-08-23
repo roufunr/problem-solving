@@ -39,9 +39,9 @@ class Solution {
             boolean neg = false;
             if (part.charAt(0) == '-') {
                 neg = true;
-                str.replace("-", "");
+                str = str.replace("-", "");
             } else if (part.charAt(0) == '+') {
-                str.replace("+", "");
+                str = str.replace("+", "");
             }
             Frac frac = new Frac(neg, Integer.parseInt(str.split("/")[0]), Integer.parseInt(str.split("/")[1]));
             fracs.add(frac);
@@ -49,9 +49,42 @@ class Solution {
         return fracs;
     }
 
-    public String fractionAddition(String expression) {
-
-        return "";
+    private int gcd(int a, int b) {
+        if (b == 0) {
+            return a;
+        }
+        return gcd(b, a % b);
     }
 
+    private int getLCM(List<Integer> nums) {
+        int g = nums.get(0);
+        long mul = nums.get(0);
+        for (int i = 1; i < nums.size(); i++) {
+            g = gcd(g, nums.get(i));
+            mul = mul * nums.get(i);
+        }
+        return (int) (mul / g);
+    }
+
+    public String fractionAddition(String expression) {
+        List<Frac> fracs = getFrac(split(expression));
+        if (fracs.size() == 1) {
+            int g = gcd(fracs.get(0).d, fracs.get(0).n);
+            String ans = ((fracs.get(0).neg) ? "-" : "") + Math.abs(fracs.get(0).n / g) + "/"
+                    + Math.abs(fracs.get(0).d / g);
+            return ans;
+        }
+        List<Integer> denomIntegers = new ArrayList<>();
+        for (Frac f : fracs) {
+            denomIntegers.add(f.d);
+        }
+        int d = getLCM(denomIntegers);
+        int n = 0;
+        for (Frac f : fracs) {
+            n += Math.pow(-1, f.neg ? 1 : 0) * ((d / f.d) * f.n);
+        }
+        int g = gcd(Math.abs(d), Math.abs(n));
+        String ans = ((n < 0 || d < 0) ? "-" : "") + Math.abs(n / g) + "/" + Math.abs(d / g);
+        return ans;
+    }
 }
