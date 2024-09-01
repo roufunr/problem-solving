@@ -1,4 +1,4 @@
-package leetcode.daily_challenge.august_24.n_ary_tree_postorder_traversal;
+package leetcode.daily_challenge.august_24.n_ary_tree_postoder_traversal;
 
 import java.util.*;
 public class Solution {

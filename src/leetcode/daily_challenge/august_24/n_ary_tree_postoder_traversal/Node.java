@@ -1,11 +1,13 @@
-package leetcode.daily_challenge.august_24.n_ary_tree_postorder_traversal;
+package leetcode.daily_challenge.august_24.n_ary_tree_postoder_traversal;
 
 import java.util.List;
+
 public class Node {
     public int val;
     public List<Node> children;
 
-    public Node() {}
+    public Node() {
+    }
 
     public Node(int _val) {
         val = _val;
