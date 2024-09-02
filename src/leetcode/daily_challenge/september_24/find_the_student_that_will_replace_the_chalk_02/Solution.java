@@ -1,4 +1,4 @@
-package leetcode.daily_challenge.september_24.find_the_student_that_will_replace_the_chalk;
+package leetcode.daily_challenge.september_24.find_the_student_that_will_replace_the_chalk_02;
 
 public class Solution {
     public int chalkReplacer(int[] chalk, int k) {
