@@ -47,6 +47,44 @@ class Solution {
         return path;
     }
 
+    private List<List<Integer>> bellman(int n, int[][] edges, int source, int destination) {
+        int[] dist = new int[n];
+        int inf = (int)Math.pow(10, 9) + 1;
+        Arrays.fill(dist, inf); // Initialize all parents to -1
+        dist[source] = 0;
+        int[] parent = new int[n];
+        Arrays.fill(parent, -1); // Initialize all parents to -1
+        parent[source] = source;
+        for (int i = 0; i < n - 1; i++) {
+            for (int[] edge : edges) {
+                int u = edge[0];
+                int v = edge[1];
+                int w = edge[2];
+                if (dist[v] > dist[u] + w) {
+                    dist[v] = dist[u] + w;
+                    parent[v] = u;
+                }
+                if (dist[u] > dist[v] + w) {
+                    dist[u] = dist[v] + w;
+                    parent[u] = v;
+                }
+            }
+        }
+        List<List<Integer>> path = new ArrayList<>();
+        int itr = destination;
+        if (parent[itr] == -1) {
+            return path;
+        }
+    
+        while (itr != source) {
+            path.add(new ArrayList<>(Arrays.asList(parent[itr], itr)));
+            itr = parent[itr];
+        }
+    
+        Collections.reverse(path);
+        return path;
+    }
+
     private int getTotalDistance(List<List<Integer>> path, Map<String, Integer> weightMap) {
         int total = 0;
         for (List<Integer> p : path) {
@@ -79,7 +117,7 @@ class Solution {
             weightMap.put(edge[0] + "_" + edge[1], edge[2]);
             weightMap.put(edge[1] + "_" + edge[0], edge[2]);
         }
-        List<List<Integer>> path = dijkstra(adj, source, destination);
+        List<List<Integer>> path = bellman(n, edges, source, destination);
         int totalDist = getTotalDistance(path, weightMap);
         List<Integer> negEdgeIdx = getNegIdx(path, weightMap);
         if (totalDist >= target || negEdgeIdx.size() == 0) {
