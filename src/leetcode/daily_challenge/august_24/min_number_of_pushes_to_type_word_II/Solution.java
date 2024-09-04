@@ -23,7 +23,7 @@ public class Solution {
             if (count[i] > 0)
                 countList.add(new Pair((char) (i + 'a'), count[i]));
         }
-        Comparator<Pair> comparator = new Comparator<>() {
+        Comparator<Pair> comparator = new Comparator<Pair>() {
             @Override
             public int compare(Pair p1, Pair p2) {
                 return Integer.compare(p2.count, p1.count);
