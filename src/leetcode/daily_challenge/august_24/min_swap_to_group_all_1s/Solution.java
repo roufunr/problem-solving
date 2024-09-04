@@ -1,6 +1,5 @@
 package leetcode.daily_challenge.august_24.min_swap_to_group_all_1s;
 
-import java.util.PriorityQueue;
 
 public class Solution {
     public int minSwaps(int[] nums) {

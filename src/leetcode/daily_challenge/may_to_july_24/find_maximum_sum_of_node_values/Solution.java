@@ -1,8 +1,5 @@
 package leetcode.daily_challenge.may_to_july_24.find_maximum_sum_of_node_values;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Solution {
     public long maximumValueSum(int[] nums, int k, int[][] edges) {
         long maxSum = 0;

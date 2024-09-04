@@ -1,8 +1,5 @@
 package leetcode.daily_challenge.may_to_july_24.find_winner;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class SolutionIII {
     public int findTheWinner(int n, int k) {
         int ans = 0;

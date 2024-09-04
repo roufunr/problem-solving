@@ -1,6 +1,5 @@
 package leetcode.daily_challenge.may_to_july_24.minimum_difference;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.PriorityQueue;
 

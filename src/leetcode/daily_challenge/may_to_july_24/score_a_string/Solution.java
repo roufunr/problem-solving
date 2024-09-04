@@ -1,6 +1,5 @@
 package leetcode.daily_challenge.may_to_july_24.score_a_string;
 
-import java.util.*;
 
 public class Solution {
     public int scoreOfString(String s) {

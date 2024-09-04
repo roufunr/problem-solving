@@ -1,8 +1,7 @@
 package leetcode.daily_challenge.may_to_july_24.find_winner;
 
-import java.util.ArrayList;
+
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 public class SolutionII { // queue based solution

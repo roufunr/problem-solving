@@ -1,7 +1,5 @@
 package leetcode.daily_challenge.may_to_july_24.special_array;
 
-import java.util.Arrays;
-
 public class Solution {
     public int specialArray(int[] nums) {
         int[] counts = new int[nums.length + 1];
