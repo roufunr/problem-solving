@@ -26,7 +26,7 @@ class Solution {
         }
         double[] dist = new double[n];
         dist[start_node] = 1;
-        PriorityQueue<Pair> pq = new PriorityQueue<>(new Comparator<>() {
+        PriorityQueue<Pair> pq = new PriorityQueue<>(new Comparator<Pair>() {
             @Override
             public int compare(Pair p1, Pair p2) { // max heap
                 return Double.compare(p2.prob, p1.prob);
