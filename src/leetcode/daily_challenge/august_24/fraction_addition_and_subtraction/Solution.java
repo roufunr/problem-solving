@@ -2,13 +2,13 @@ package leetcode.daily_challenge.august_24.fraction_addition_and_subtraction;
 
 import java.util.*;
 
-class Frac {
+class Fraction {
     // ±numerator/denominator
     public boolean neg;
     public int n;
     public int d;
 
-    public Frac(boolean neg, int n, int d) {
+    public Fraction(boolean neg, int n, int d) {
         this.neg = neg;
         this.n = n;
         this.d = d;
@@ -32,8 +32,8 @@ class Solution {
         return parts;
     }
 
-    private List<Frac> getFrac(List<String> parts) {
-        List<Frac> fracs = new ArrayList<>();
+    private List<Fraction> getFrac(List<String> parts) {
+        List<Fraction> fracs = new ArrayList<>();
         for (String part : parts) {
             String str = new String(part);
             boolean neg = false;
@@ -43,7 +43,7 @@ class Solution {
             } else if (part.charAt(0) == '+') {
                 str = str.replace("+", "");
             }
-            Frac frac = new Frac(neg, Integer.parseInt(str.split("/")[0]), Integer.parseInt(str.split("/")[1]));
+            Fraction frac = new Fraction(neg, Integer.parseInt(str.split("/")[0]), Integer.parseInt(str.split("/")[1]));
             fracs.add(frac);
         }
         return fracs;
@@ -67,7 +67,7 @@ class Solution {
     }
 
     public String fractionAddition(String expression) {
-        List<Frac> fracs = getFrac(split(expression));
+        List<Fraction> fracs = getFrac(split(expression));
         if (fracs.size() == 1) {
             int g = gcd(fracs.get(0).d, fracs.get(0).n);
             String ans = ((fracs.get(0).neg) ? "-" : "") + Math.abs(fracs.get(0).n / g) + "/"
@@ -75,12 +75,12 @@ class Solution {
             return ans;
         }
         List<Integer> denomIntegers = new ArrayList<>();
-        for (Frac f : fracs) {
+        for (Fraction f : fracs) {
             denomIntegers.add(f.d);
         }
         int d = getLCM(denomIntegers);
         int n = 0;
-        for (Frac f : fracs) {
+        for (Fraction f : fracs) {
             n += Math.pow(-1, f.neg ? 1 : 0) * ((d / f.d) * f.n);
         }
         int g = gcd(Math.abs(d), Math.abs(n));
