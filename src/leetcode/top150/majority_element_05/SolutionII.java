@@ -2,6 +2,7 @@ package leetcode.top150.majority_element_05;
 
 
 // Solved the majority element using bit manipulation
+// Space complexity O(1)
 public class SolutionII {
     public int majorityElement(int[] nums) {
         int majority = 0;
