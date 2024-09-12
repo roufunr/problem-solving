@@ -1,6 +1,8 @@
 package leetcode.top150.jump_game_09;
 import java.util.*;
 public class Solution {
+
+    //GOT TLE
     private void dfs(boolean[] visited, List<List<Integer>> adj, int node) {
         if(node < visited.length) {
             if(visited[node]) {
