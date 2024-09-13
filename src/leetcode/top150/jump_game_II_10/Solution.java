@@ -37,7 +37,7 @@ public class Solution {
         }
         for (int i = 0; i < nums.length; i++) {
             for (int j = 0; j < nums[i]; j++) {
-                adj.get(i).add(i + j + 1);
+                if(i + j + 1 < nums.length) adj.get(i).add(i + j + 1);
             }
         }
         return bfs(adj);
