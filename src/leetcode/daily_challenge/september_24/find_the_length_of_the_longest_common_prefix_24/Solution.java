@@ -8,6 +8,9 @@ public class Solution {
         Set<Integer> set = new HashSet<>();
         for(int n : arr1) {
             while(n > 0) {
+                if(set.contains(n)) {
+                    break;
+                }
                 set.add(n);
                 n /= 10;
             }
