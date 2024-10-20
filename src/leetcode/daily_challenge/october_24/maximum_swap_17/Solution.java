@@ -1,4 +1,4 @@
-package leetcode.daily_challenge.october_24.maximum_swap;
+package leetcode.daily_challenge.october_24.maximum_swap_17;
 
 public class Solution {
     public int maximumSwap(int num) {
