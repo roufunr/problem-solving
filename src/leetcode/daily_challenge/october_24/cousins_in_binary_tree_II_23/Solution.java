@@ -1,4 +1,4 @@
-package leetcode.daily_challenge.october_24.cousins_in_binary_tree_II;
+package leetcode.daily_challenge.october_24.cousins_in_binary_tree_II_23;
 
 import java.util.*;
 
