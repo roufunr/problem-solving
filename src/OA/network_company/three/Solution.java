@@ -1,4 +1,4 @@
-package OA.cisco.three;
+package OA.network_company.three;
 
 public class Solution {
     public void  funcPrint(int numRow, int numColumn)

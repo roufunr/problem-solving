@@ -1,4 +1,4 @@
-package OA.cisco.one;
+package OA.network_company.one;
 
 public class Runner {
     public static void main(String[] args) {

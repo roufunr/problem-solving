@@ -1,4 +1,4 @@
-package OA.cisco.two;
+package OA.network_company.two;
 import java.util.*;
 public class Solution {
     public void  funcUpdation(String currPassword, String newPassword)
