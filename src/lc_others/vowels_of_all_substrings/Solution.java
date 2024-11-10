@@ -1,5 +1,5 @@
 package lc_others.vowels_of_all_substrings;
-
+import java.util.*;
 public class Solution {
     public long countVowels(String word) {
         long totalLen = (long)word.length();
