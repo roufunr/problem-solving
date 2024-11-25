@@ -1,26 +1,25 @@
 package leetcode.daily_challenge.november_24.maximum_matrix_sum_24;
 
-public class Solution {
+class Solution {
 
     public long maxMatrixSum(int[][] matrix) {
-        long totalSum = 0;
-        int minAbsVal = Integer.MAX_VALUE;
-        int negativeCount = 0;
-
-        for (int[] row : matrix) {
-            for (int val : row) {
-                totalSum += Math.abs(val);
-                if (val < 0) {
-                    negativeCount++;
+        long total = 0;
+        int minCount = 0;
+        int negMin = Integer.MAX_VALUE;
+        for(int i = 0; i < matrix.length; i++) {
+            for(int j = 0; j < matrix[0].length; j++) {
+                negMin = Math.min(negMin, Math.abs(matrix[i][j]));
+                if(matrix[i][j] <= 0) {
+                    minCount++;
                 }
-                minAbsVal = Math.min(minAbsVal, Math.abs(val));
+                total += Math.abs(matrix[i][j]);
             }
         }
-        if (negativeCount % 2 != 0) {
-            totalSum -= 2 * minAbsVal;
+        if(minCount % 2 == 0) {
+            return total;
+        } else {
+            return total - (2 * negMin);
         }
-
-        return totalSum;
     }
 
 }
