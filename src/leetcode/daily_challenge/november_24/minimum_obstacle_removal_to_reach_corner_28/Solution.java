@@ -41,11 +41,6 @@ public class Solution {
             Pair top = queue.poll();
             int topX = Integer.parseInt(top.node.split("_")[0]);
             int topY = Integer.parseInt(top.node.split("_")[1]);
-            int queueDist = top.distance;
-            int soFarDist = distances.get(top.node);
-            if (queueDist > soFarDist) {
-                continue;
-            }
             for (int[] dir : dirs) {
                 int newX = topX + dir[0];
                 int newY = topY + dir[1];
