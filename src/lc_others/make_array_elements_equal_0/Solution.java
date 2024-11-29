@@ -1,5 +1,5 @@
 package lc_others.make_array_elements_equal_0;
-
+import java.util.*;
 public class Solution {
     private boolean allZero(int[] nums) {
         for(int n : nums) {
