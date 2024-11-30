@@ -1,72 +1,48 @@
 package leetcode.daily_challenge.november_24.minimum_time_to_visit_a_cell_in_a_grid_29;
 
 
-
 import java.util.*;
-public class Solution {
-
+class Solution {
     public int minimumTime(int[][] grid) {
-        // If both initial moves require more than 1 second, impossible to proceed
-        if (grid[0][1] > 1 && grid[1][0] > 1) {
+        if(grid[0][1] > 1 && grid[1][0] > 1) {
             return -1;
         }
+        int n = grid.length;
+        int m = grid[0].length;
 
-        int rows = grid.length, cols = grid[0].length;
-        // Possible movements: down, up, right, left
-        int[][] directions = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
-        boolean[][] visited = new boolean[rows][cols];
-
-        // Priority queue stores {time, row, col}
-        // Ordered by minimum time to reach each cell
-        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) ->
-            Integer.compare(a[0], b[0])
-        );
-        pq.add(new int[] { grid[0][0], 0, 0 });
-
-        while (!pq.isEmpty()) {
-            int[] curr = pq.poll();
-            int time = curr[0], row = curr[1], col = curr[2];
-
-            // Check if reached target
-            if (row == rows - 1 && col == cols - 1) {
-                return time;
+        boolean[][] visited = new boolean[n][m];
+        PriorityQueue<int[]> queue = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
+        queue.offer(new int[]{grid[0][0], 0, 0});
+        visited[0][0] = true;
+        int[][] dirs = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+        while(!queue.isEmpty()) {
+            int[] top = queue.poll();
+            int currentTime = top[0];
+            int x = top[1];
+            int y = top[2];
+            if(x == n - 1 && y == m - 1) {
+                return currentTime;
             }
-
-            // Skip if cell already visited
-            if (visited[row][col]) {
-                continue;
-            }
-            visited[row][col] = true;
-
-            // Try all four directions
-            for (int[] d : directions) {
-                int nextRow = row + d[0], nextCol = col + d[1];
-                if (!isValid(visited, nextRow, nextCol)) {
-                    continue;
+            for(int[] dir : dirs) {
+                int newX = x + dir[0];
+                int newY = y + dir[1];
+                if(newX >= 0 && newX < n && newY >= 0 && newY < m && visited[newX][newY] == false) {
+                    int newTime = currentTime;
+                    if(currentTime >= grid[newX][newY]) {
+                        newTime = currentTime + 1;
+                    } else {
+                        int diff = grid[newX][newY] - currentTime;
+                        if(diff % 2 == 1) {
+                            newTime = grid[newX][newY];
+                        } else {
+                            newTime = grid[newX][newY] + 1;
+                        }
+                    }
+                    queue.offer(new int[]{newTime, newX, newY});
+                    visited[newX][newY] = true;
                 }
-
-                // Calculate the wait time needed to move to next cell
-                int waitTime = ((grid[nextRow][nextCol] - time) % 2 == 0)
-                    ? 1
-                    : 0;
-                int nextTime = Math.max(
-                    grid[nextRow][nextCol] + waitTime,
-                    time + 1
-                );
-                pq.add(new int[] { nextTime, nextRow, nextCol });
             }
         }
         return -1;
-    }
-
-    // Checks if given cell coordinates are valid and unvisited
-    private boolean isValid(boolean[][] visited, int row, int col) {
-        return (
-            row >= 0 &&
-            col >= 0 &&
-            row < visited.length &&
-            col < visited[0].length &&
-            !visited[row][col]
-        );
     }
 }
