@@ -1,4 +1,4 @@
-package leetcode.daily_challenge.november_24.check_if_n_and_its_double_exist_30;
+package leetcode.daily_challenge.december_24.check_if_n_and_its_double_exist_01;
 
 public class Solution {
     public boolean checkIfExist(int[] arr) {
