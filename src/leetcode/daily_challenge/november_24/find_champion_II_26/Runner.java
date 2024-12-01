@@ -1,4 +1,4 @@
-package leetcode.daily_challenge.november_24.find_champion_II;
+package leetcode.daily_challenge.november_24.find_champion_II_26;
 
 public class Runner {
     public static void main(String[] args) {
