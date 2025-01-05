@@ -1,4 +1,4 @@
-package leetcode.daily_challenge.december_24.unique_length_3_palindromic_subsequences_04;
+package leetcode.daily_challenge.january_25.unique_length_3_palindromic_subsequences_04;
 
 import java.util.*;
 
