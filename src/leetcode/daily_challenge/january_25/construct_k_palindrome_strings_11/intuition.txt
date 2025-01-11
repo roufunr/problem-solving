@@ -1,8 +1,10 @@
-You don't need to construct k plaindrome. Just you need to check, is it possible or not. 
+You don't need to construct k plaindromes. Just you need to check that is it possible or not? 
 
-In this case what you can do, try to check the false cases first then rest are true cases.
+In this problem what you can do, try to check the false cases first then rest are true cases.
 
 False cases are
-    * if number of palindrome string is greater than number of characters (which is obvious! right?!)
-    * if number of odd number of character in the string is greater than k then you'll not be able to construct k palindrome. 
+    * if the number of palindrome string (k) is greater than number of characters (which is obvious! right?!)
+    * if the number of odd number of character in the string is greater than k then you'll not be able to construct k palindrome. 
     remember: you can add at most one odd count character in a palindrome string. 
+
+Rest are true!
