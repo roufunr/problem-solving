@@ -1,6 +1,6 @@
 package leetcode.daily_challenge.january_25.divide_nodes_into_the_maximum_number_of_groups_30;
 import java.util.*;
-public public class Solution {
+public class Solution {
     public int magnificentSets(int n, int[][] edges) {
         ArrayList<ArrayList<Integer>> adjList = new ArrayList<>(n);
         for (int i = 0; i < n; i++) {
