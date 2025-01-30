@@ -1,6 +1,6 @@
 package leetcode.daily_challenge.january_25.divide_nodes_into_the_maximum_number_of_groups_30;
 import java.util.*;
-public class Solution {
+public class SolutionV0 {
     private List<List<Integer>> adj;
     private List<Integer> getCC(int src, boolean[] explored) {
         Set<Integer> visited = new HashSet<>();
