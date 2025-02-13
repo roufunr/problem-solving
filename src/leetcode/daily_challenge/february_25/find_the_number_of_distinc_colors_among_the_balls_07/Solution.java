@@ -44,20 +44,24 @@ public class Solution {
         int[] ans = new int[queries.length];
         int idx = 0;
         for(int[] query : queries) {
-            if(positionColorMap.containsKey(query[0])) {
-                int prevColor = positionColorMap.get(query[0]);
-                if(prevColor != query[1]) {
-                    colorCountMap.put(query[1], colorCountMap.getOrDefault(query[1], 0) + 1);
-                    if(colorCountMap.get(prevColor) == 1) {
-                        colorCountMap.remove(prevColor);
-                    } else {
-                        colorCountMap.put(prevColor, colorCountMap.get(query[1]) - 1);
+            int newColor = query[1];
+            int position = query[0];
+            if(positionColorMap.containsKey(position)) {
+                int prevColor = positionColorMap.get(position);
+                if(prevColor != newColor) {
+                    if(colorCountMap.containsKey(prevColor)) {
+                        if(colorCountMap.get(prevColor) == 1) {
+                            colorCountMap.remove(prevColor);
+                        } else {
+                            colorCountMap.put(prevColor, colorCountMap.get(prevColor) - 1);
+                        }
                     }
-                }
+                    colorCountMap.put(newColor, colorCountMap.getOrDefault(newColor, 0) + 1);
+                } 
             } else {
-                colorCountMap.put(query[1], colorCountMap.getOrDefault(query[1], 0) + 1);
+                colorCountMap.put(newColor, colorCountMap.getOrDefault(newColor, 0) + 1);
+                positionColorMap.put(position, newColor);
             }
-            positionColorMap.put(query[0], query[1]);
             ans[idx] = colorCountMap.size();
             idx++;
         }
