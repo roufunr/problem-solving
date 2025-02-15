@@ -34,7 +34,7 @@ public class Solution {
         String squareStr = ("" + square);
         int maxLen = squareStr.length();
         List<Integer> list = new ArrayList<>();
-        for(int i = 1; i <= maxLen; i++) {
+        for(int i = 1; i < maxLen; i++) {
             list.add(i);
         }
         allCombination = new ArrayList<>();
@@ -48,7 +48,7 @@ public class Solution {
                 sum += Integer.parseInt(squareStr.substring(startIdx, currentIdx));
                 startIdx = currentIdx;
             }
-            sum += startIdx < maxLen ? Integer.parseInt(squareStr.substring(startIdx, maxLen)) : 0;
+            sum += Integer.parseInt(squareStr.substring(startIdx, maxLen));
             if(sum == num) {
                 return true;
             }
