@@ -1,5 +1,5 @@
 package leetcode.daily_challenge.march_25.minimum_time_to_repair_cars_16;
-
+import java.util.*;
 public class Solution {
 
     public long repairCars(int[] ranks, int cars) {
