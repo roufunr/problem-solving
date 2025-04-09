@@ -1,4 +1,5 @@
-class Solution {
+package leetcode.daily_challenge.february_25.shortest_common_supersequence_28;
+public class Solution {
 
     public String shortestCommonSupersequence(String str1, String str2) {
         int str1Length = str1.length();

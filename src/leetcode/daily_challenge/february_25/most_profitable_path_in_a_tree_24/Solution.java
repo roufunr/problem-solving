@@ -1,8 +1,8 @@
 package leetcode.daily_challenge.february_25.most_profitable_path_in_a_tree_24;
 
-public import java.util.*;
+import java.util.*;
 
-class Solution {
+public class Solution {
     private Map<Integer, Integer> bobPath;
     private boolean[] visited;
     private List<List<Integer>> tree;

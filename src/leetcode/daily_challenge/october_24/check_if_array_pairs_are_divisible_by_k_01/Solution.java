@@ -1,4 +1,4 @@
-package check_if_array_pairs_are_divisible_by_k_01;
+package leetcode.daily_challenge.october_24.check_if_array_pairs_are_divisible_by_k_01;
 
 import java.util.Arrays;
 

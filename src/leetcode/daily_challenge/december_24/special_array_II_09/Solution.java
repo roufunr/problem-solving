@@ -1,4 +1,4 @@
-package leetcide.daily_challenge.december_24.special_array_II_09;
+package leetcode.daily_challenge.december_24.special_array_II_09;
 
 public class Solution {
 
