@@ -1,4 +1,4 @@
 # problem-solving
-I spend my leisure in this repo. It might be helpful for those who are new in problem solving using JAVA.
+I like to spend my leisure time working on this repo. If you're new to problem solving with Java, you might find it helpful!
 
-Thanks for visiting my repo. Please give a star if you liked it. Best wishes for your problem solving journey. 
+Thanks for stopping by—feel free to leave a ⭐ if you found it useful. Wishing you all the best on your problem solving journey! 🚀
