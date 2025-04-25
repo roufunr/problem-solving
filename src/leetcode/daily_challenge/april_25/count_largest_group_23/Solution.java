@@ -1,5 +1,6 @@
 package leetcode.daily_challenge.april_25.count_largest_group_23;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Solution {
