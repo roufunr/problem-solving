@@ -42,7 +42,7 @@ public class Solution {
             for(int i = 0; i < emailSet.size(); i++) {
                 for(int j = i + 1; j < emailSet.size(); j++) {
                     uf.union(emailIdxMap.get(emailSet.get(i)), emailIdxMap.get(emailSet.get(j)));
-                    uf.union(emailIdxMap.get(emailSet.get(j)), emailIdxMap.get(emailSet.get(i)));
+                    // uf.union(emailIdxMap.get(emailSet.get(j)), emailIdxMap.get(emailSet.get(i)));
                 }
             }
         }
