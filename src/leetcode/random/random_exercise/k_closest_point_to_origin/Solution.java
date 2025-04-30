@@ -23,7 +23,7 @@ class Solution {
             queue.offer(pair);
         }
         int[][] ans = new int[k][2];
-        for(int i = 0; i < k; i++;) {
+        for(int i = 0; i < k; i++) {
             ans[i] = queue.poll().point;
         }
         return ans;
