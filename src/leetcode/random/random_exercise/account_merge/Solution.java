@@ -1,8 +1,8 @@
 package leetcode.random.random_exercise.account_merge;
 import java.util.*;
-class UnionFind {
+class UnionFind1 {
     private int[] parent;
-    public UnionFind(int n) {
+    public UnionFind1(int n) {
         parent = new int[n];
         for(int i = 0; i < n; i++) {
             parent[i] = i;
@@ -37,7 +37,7 @@ public class Solution {
         for(int i = 0; i < emailList.size(); i++) {
             emailIdxMap.put(emailList.get(i), i);
         }
-        UnionFind uf = new UnionFind(emailList.size());
+        UnionFind1 uf = new UnionFind1(emailList.size());
         for(List<String> emailSet : emailsSet) {
             for(int i = 0; i < emailSet.size(); i++) {
                 for(int j = i + 1; j < emailSet.size(); j++) {
