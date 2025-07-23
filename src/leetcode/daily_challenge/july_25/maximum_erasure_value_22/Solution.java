@@ -1,5 +1,8 @@
 package leetcode.daily_challenge.july_25.maximum_erasure_value_22;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Solution {
     public int maximumUniqueSubarray(int[] nums) {
         Set<Integer> seen = new HashSet<>();
