@@ -39,7 +39,7 @@ public class Solution {
     }
 
     // this is n^2 solution
-    public int subarrayBitwiseORs(int[] arr) {
+    public int subarrayBitwiseORs_v1(int[] arr) {
         int[][] count = new int[arr.length][31];
         int[] sumCount = new int[31];
         Set<Integer> set = new HashSet<>();
@@ -66,5 +66,22 @@ public class Solution {
             }
         }
         return set.size();
+    }
+
+    public int subarrayBitwiseORs(int[] arr) {
+        Set<Integer> masterOR = new HashSet<>();
+        Set<Integer> currentOR = new HashSet<>();
+        for(int n : arr) {
+            Set<Integer> newCurrentOR = new HashSet<>();
+            for(int cOR : currentOR) {
+                newCurrentOR.add(cOR | n);
+            }
+            newCurrentOR.add(n);
+            for(int ncOR : newCurrentOR) {
+                masterOR.add(ncOR);
+            }
+            currentOR = newCurrentOR;
+        }
+        return masterOR.size();
     }
 }
