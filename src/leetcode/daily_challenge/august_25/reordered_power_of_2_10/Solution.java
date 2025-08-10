@@ -23,11 +23,7 @@ public class Solution {
             char digit = givenNumber.charAt(j);
             digitCountMap.put(digit, digitCountMap.getOrDefault(digit, 0) + 1);
         }
-        
-        
-        
         List<Map<Character, Integer>> listofMaps = map.get(len);
-        
         for(Map<Character, Integer> powerNumber : listofMaps) {
             boolean found = true;
             for(Character key : powerNumber.keySet()) {
@@ -45,7 +41,6 @@ public class Solution {
                 return true;
             }
         }
-
         return false;
     }
 }
