@@ -12,4 +12,18 @@ public class Solution {
             return isPowerOfFour(n / 4);
         }
     }
+
+    
+    public boolean isPowerOfFour_bitwise_solution(int n) {
+        int x = 1;
+        while(x > 0) {
+            // System.out.println(x);
+            if((x ^ n) == 0) {
+                return true;
+            }   
+            x = x << 2;
+        }
+        return false;
+    }
+
 }
