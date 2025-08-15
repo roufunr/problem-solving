@@ -13,7 +13,7 @@ public class Solution {
         }
     }
 
-    
+
     public boolean isPowerOfFour_bitwise_solution(int n) {
         int x = 1;
         while(x > 0) {
@@ -25,5 +25,4 @@ public class Solution {
         }
         return false;
     }
-
 }
