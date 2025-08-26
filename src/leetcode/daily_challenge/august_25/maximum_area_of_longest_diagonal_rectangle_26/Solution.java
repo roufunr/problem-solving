@@ -13,4 +13,18 @@ public class Solution {
         });
         return dimensions[0][0] * dimensions[0][1];
     }
+
+    public int areaOfMaxDiagonalV2(int[][] dimensions) {
+        int maxArea = Integer.MIN_VALUE;
+        int maxDiagonal = Integer.MIN_VALUE;
+        for(int[] dim : dimensions) {
+            int diagonal = dim[0] * dim[0] + dim[1] * dim[1];
+            int area = dim[0] * dim[1];
+            if(maxDiagonal <  diagonal || (maxDiagonal ==  diagonal && area > maxArea)) {
+                maxArea = area;
+                maxDiagonal = diagonal;
+            }
+        }
+        return maxArea;
+    }
 }
