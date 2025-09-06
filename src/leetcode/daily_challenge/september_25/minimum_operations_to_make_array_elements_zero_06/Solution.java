@@ -1,13 +1,6 @@
 package leetcode.daily_challenge.september_25.minimum_operations_to_make_array_elements_zero_06;
 
 public class Solution {
-    private int[] powerOfFour;
-    public Solution() {
-        powerOfFour = new int[16];
-        for(int i = 0; i < 16; i++) {
-            powerOfFour[i] = (int) Math.pow(4, i);
-        }
-    }
     public long calculateSumUptoN(int n) {
         int k = 0;
         long sum = 0;
